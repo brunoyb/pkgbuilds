@@ -1,0 +1,37 @@
+# Contributor: totoloco <totoloco at gmail dot com>
+
+pkgname=minbif
+pkgver=1.0
+pkgrel=1
+pkgdesc="It aims to use the libpurple library from the Pidgin project to provide an IRC-friendly instant messaging client."
+arch=('i686' 'x86_64')
+url="http://symlink.me/wiki/minbif"
+license=('GPL')
+makedepends=('cmake')
+depends=('libpurple' 'libcaca')
+optdepends=('xinetd: to run minbif through xinetd')
+backup=(etc/minbif/minbif.conf
+	etc/minbif/minbif.motd
+	etc/xinetd.d/minbif)
+source=('http://symlink.me/attachments/download/30/'$pkgname-$pkgver'.tar.gz'
+	${pkgname}'.rcd'
+	${pkgname}'.xinetd')
+install=${pkgname}.install
+md5sums=('792854533b0f653a2f70d93007e2e87a'
+	 '68b2526cd164e27fd44447674179d2a5'
+	 '64ca662412a64cd3f043c8f02794472f')
+
+build() {
+	cd $srcdir/$pkgname-$pkgver
+	make ENABLE_CACA=1 PREFIX=/usr CONF_PREFIX=/etc/minbif || return 1
+
+	install -m755 -d $pkgdir/var/run
+	install -m755 -d $pkgdir/var/lib
+	install -o64 -g64 -d -m755 $pkgdir/var/run/minbif
+	install -o64 -g64 -d -m770 $pkgdir/var/lib/minbif
+	install -o64 -g64 -d -m770 $pkgdir/var/lib/minbif/users
+	install -D -m755 $srcdir/minbif.rcd $pkgdir/etc/rc.d/minbif || return 1
+	install -D -m644 $srcdir/minbif.xinetd $pkgdir/etc/xinetd.d/minbif || return 1
+
+	make DESTDIR=$pkgdir install || return 1
+}
