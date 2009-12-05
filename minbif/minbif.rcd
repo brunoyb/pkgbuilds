@@ -3,52 +3,59 @@
 . /etc/rc.conf
 . /etc/rc.d/functions
 
-get_pid() {
-	pidof -o %PPID /usr/bin/minbif
-}
+PID=$(pidof -o %PPID /usr/bin/minbif)
 
 case "$1" in
-  start)
-    stat_busy "Starting Minbif"
+	start)
+	stat_busy "Starting Minbif"
 
-    PID=$(get_pid)
-    if [ -z "$PID" ]; then
-      [ -f /var/run/minbif/minbif.pid ] && rm -f /var/run/minbif/minbif.pid
-      su -s /bin/sh -c "/usr/bin/minbif --pidfile /var/run/minbif/minbif.pid /etc/minbif/minbif.conf" "minbif"
-      if [ $? -gt 0 ]; then
-        stat_fail
-        exit 1
-      else
-        add_daemon minbif
-        stat_done
-      fi
-    else
-      stat_fail
-      exit 1
-    fi
-    ;;
+	if [ -z "$PID" ]
+	then
+		[ -f /var/run/minbif/minbif.pid ] && rm -f /var/run/minbif/minbif.pid
+		su -s /bin/sh -c "/usr/bin/minbif --pidfile /var/run/minbif/minbif.pid /etc/minbif/minbif.conf" "minbif"
+		PID=$(pidof -o %PPID /usr/bin/minbif)
+		if [ -z "$PID" ]
+		then
+			stat_fail
+			exit 1
+		else
+			add_daemon minbif
+			stat_done
+		fi
+	else
+		stat_fail
+		exit 1
+	fi
 
-  stop)
-    stat_busy "Stopping Minbif"
-    PID=$(get_pid)
-    # KILL
-    [ ! -z "$PID" ] && kill $PID &> /dev/null
-    if [ $? -gt 0 ]; then
-      stat_fail
-      exit 1
-    else
-      rm -f /var/run/minbif/minbif.pid &> /dev/null
-      rm_daemon minbif
-      stat_done
-    fi
-    ;;
+	;;
 
-  restart)
-    $0 stop
-    sleep 3
-    $0 start
-    ;;
-  *)
-    echo "usage: $0 {start|stop|restart}"
+	stop)
+	stat_busy "Stopping Minbif"
+
+	[ ! -z "$PID" ] && kill $PID &> /dev/null
+	if [ $? -gt 0 ]
+	then
+		stat_fail
+		exit 1
+	else
+		rm -f /var/run/minbif/minbif.pid &> /dev/null
+		rm_daemon minbif
+		stat_done
+	fi
+
+	;;
+
+	restart)
+
+	$0 stop
+	sleep 3
+	$0 start
+
+	;;
+
+	*)
+
+	echo "usage: $0 {start|stop|restart}"
 esac
+
 exit 0

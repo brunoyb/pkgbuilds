@@ -9,5 +9,5 @@ service minbif
         server = /usr/bin/minbif
         server_args = /etc/minbif/minbif.conf
         port = 6667
-        disable = no
+        disable = yes
 }

@@ -1,11 +1,16 @@
 post_install() {
 	echo "-> Minbif can run through xinetd or as a daemon for now."
+
 	if [ ! `grep minbif /etc/group` ]
 	then
-		groupadd -g 64 minbif &> /dev/null
+		groupadd -g 67 minbif &> /dev/null
 	fi
 
-	id minbif &> /dev/null || useradd -u 64 -g minbif -d /var/lib/minbif -s /bin/false minbif
+	id minbif &> /dev/null || useradd -u 67 -g minbif -d /var/lib/minbif -s /bin/false minbif
+
+	chown -R minbif:minbif /var/lib/minbif
+	chmod 770 /var/lib/minbif
+	chmod 770 /var/lib/minbif/users
 }
 
 post_upgrade() {
