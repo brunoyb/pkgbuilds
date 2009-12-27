@@ -11,6 +11,8 @@ post_install() {
 	chown -R minbif:minbif /var/lib/minbif
 	chmod 770 /var/lib/minbif
 	chmod 770 /var/lib/minbif/users
+	chown -R minbif:minbif /var/run/minbif
+	chmod 775 /var/run/minbif
 }
 
 post_upgrade() {
