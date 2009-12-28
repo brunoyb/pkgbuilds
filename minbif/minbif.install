@@ -8,11 +8,11 @@ post_install() {
 
 	id minbif &> /dev/null || useradd -u 67 -g minbif -d /var/lib/minbif -s /bin/false minbif
 
+	chown -R minbif:minbif /var/run/minbif
 	chown -R minbif:minbif /var/lib/minbif
+	chmod 775 /var/run/minbif
 	chmod 770 /var/lib/minbif
 	chmod 770 /var/lib/minbif/users
-	chown -R minbif:minbif /var/run/minbif
-	chmod 775 /var/run/minbif
 }
 
 post_upgrade() {
