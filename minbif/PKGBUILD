@@ -3,7 +3,7 @@
 
 pkgname=minbif
 pkgver=1.0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Minbif uses libpurple (Pidgin) to create an IRC-friendly IM client -- similar to BitlBee"
 arch=('i686' 'x86_64')
 url="http://symlink.me/wiki/minbif"
