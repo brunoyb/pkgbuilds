@@ -4,35 +4,39 @@
 pkgname=minbif
 pkgver=1.0.1
 pkgrel=1
-pkgdesc="It aims to use the libpurple library from the Pidgin project to provide an IRC-friendly instant messaging client."
+pkgdesc="Minbif uses libpurple (Pidgin) to create an IRC-friendly IM client -- similar to BitlBee"
 arch=('i686' 'x86_64')
 url="http://symlink.me/wiki/minbif"
 license=('GPL')
 makedepends=('cmake')
 depends=('libpurple' 'libcaca')
-optdepends=('xinetd: to run minbif through xinetd')
-backup=(etc/minbif/minbif.conf
-        etc/minbif/minbif.motd
-        etc/xinetd.d/minbif)
-source=('http://symlink.me/attachments/download/39/'$pkgname-$pkgver'.tar.gz'
-        ${pkgname}'.rcd'
-        ${pkgname}'.xinetd')
-install=${pkgname}.install
+optdepends=("xinetd: to run minbif through xinetd")
+backup=("etc/minbif/minbif.conf"
+        "etc/minbif/minbif.motd"
+        "etc/xinetd.d/minbif")
+source=("http://symlink.me/attachments/download/39/${pkgname}-${pkgver}.tar.gz"
+        "${pkgname}.rcd"
+        "${pkgname}.xinetd"
+        "${pkgname}.patch")
+install="${pkgname}.install"
 md5sums=('b3eb1f09fd33b6e9c811b0dc34653e2f'
          '799f777f3254bd5c78597a92b0cb972a'
-         'da02518644a583124d7ed839f5eab6c5')
+         'da02518644a583124d7ed839f5eab6c5'
+         'f3fa669b4227b79a701f14ad7632ab51')
 
 build() {
-	cd $srcdir/$pkgname-$pkgver
+	cd ${srcdir}/${pkgname}-${pkgver}
+
+	patch -Np1 -i ../minbif.patch || return 1
 	make PREFIX=/usr CONF_PREFIX=/etc/minbif || return 1
 
-	install -m755 -d $pkgdir/var/run
-	install -m755 -d $pkgdir/var/lib
-	install -o64 -g64 -d -m755 $pkgdir/var/run/minbif
-	install -o64 -g64 -d -m770 $pkgdir/var/lib/minbif
-	install -o64 -g64 -d -m770 $pkgdir/var/lib/minbif/users
-	install -D -m755 $srcdir/minbif.rcd $pkgdir/etc/rc.d/minbif || return 1
-	install -D -m644 $srcdir/minbif.xinetd $pkgdir/etc/xinetd.d/minbif || return 1
+	install -m755 -d ${pkgdir}/var/run || return 1
+	install -m755 -d ${pkgdir}/var/lib || return 1
+	install -o64 -g64 -d -m755 ${pkgdir}/var/run/minbif || return 1
+	install -o64 -g64 -d -m770 ${pkgdir}/var/lib/minbif || return 1
+	install -o64 -g64 -d -m770 ${pkgdir}/var/lib/minbif/users || return 1
+	install -D -m755 ${srcdir}/minbif.rcd ${pkgdir}/etc/rc.d/minbif || return 1
+	install -D -m644 ${srcdir}/minbif.xinetd ${pkgdir}/etc/xinetd.d/minbif || return 1
 
-	make DESTDIR=$pkgdir install || return 1
+	make DESTDIR=${pkgdir} install
 }
