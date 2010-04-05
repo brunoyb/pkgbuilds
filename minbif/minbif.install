@@ -1,6 +1,4 @@
 post_install() {
-	echo "-> Minbif can run through xinetd or as a daemon for now."
-
 	if [ ! `grep minbif /etc/group` ]
 	then
 		groupadd -g 67 minbif &> /dev/null
