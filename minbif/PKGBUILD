@@ -14,7 +14,7 @@ optdepends=('xinetd: to run minbif through xinetd')
 backup=("etc/minbif/minbif.conf"
         "etc/minbif/minbif.motd"
         "etc/xinetd.d/minbif")
-source=("http://symlink.me/attachments/download/44/${pkgname}-${pkgver}.tar.gz"
+source=("http://symlink.me/attachments/download/45/${pkgname}-${pkgver}.tar.gz"
         "${pkgname}.rcd"
         "${pkgname}.xinetd")
 install="${pkgname}.install"
