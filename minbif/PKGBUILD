@@ -18,7 +18,7 @@ source=("http://symlink.me/attachments/download/45/${pkgname}-${pkgver}.tar.gz"
         "${pkgname}.rcd"
         "${pkgname}.xinetd")
 install="${pkgname}.install"
-md5sums=('039870ef36b3d8fea1233ccdc573326f'
+md5sums=('32418078a1741da3b4028269666f2bac'
          '799f777f3254bd5c78597a92b0cb972a'
          'da02518644a583124d7ed839f5eab6c5')
 
