@@ -2,24 +2,24 @@
 # Contributor: totoloco <totoloco at gmail dot com>
 
 pkgname=minbif
-pkgver=1.0.2
-pkgrel=2
+pkgver=1.0.3
+pkgrel=1
 pkgdesc="Minbif uses libpurple (Pidgin) to create an IRC-friendly IM client (like BitlBee)"
 arch=('i686' 'x86_64')
 url="http://symlink.me/wiki/minbif"
 license=('GPLv2')
-makedepends=('cmake')
 depends=('gnutls' 'libcaca' 'libpurple')
+makedepends=('cmake')
 optdepends=('xinetd: to run minbif through xinetd')
 backup=("etc/minbif/minbif.conf"
         "etc/minbif/minbif.motd"
         "etc/xinetd.d/minbif")
-source=("http://symlink.me/attachments/download/45/${pkgname}-${pkgver}.tar.gz"
+source=("http://symlink.me/attachments/download/49/${pkgname}-${pkgver}.tar.gz"
         "${pkgname}.rcd"
         "${pkgname}.xinetd")
 install="${pkgname}.install"
-md5sums=('32418078a1741da3b4028269666f2bac'
-         '799f777f3254bd5c78597a92b0cb972a'
+md5sums=('6493468e2370261364ada4a3e9bfeaf0'
+         '6bf519569c34514f84689b4cfbaf0bf4'
          'da02518644a583124d7ed839f5eab6c5')
 
 build() {
@@ -34,15 +34,19 @@ build() {
 	     ENABLE_VIDEO=ON         \
 	     ENABLE_PLUGIN=OFF       \
 	     ENABLE_PAM=OFF          \
-	     ENABLE_TLS=ON           \
+	     ENABLE_TLS=OFF          \
 	     DEBUG=OFF || return 1
+}
+
+package() {
+	cd ${srcdir}/${pkgname}-${pkgver}
 
 	install -m755 -d ${pkgdir}/var/run || return 1
 	install -m755 -d ${pkgdir}/var/lib || return 1
 
-	install -m755 -o64 -g64 -d ${pkgdir}/var/run/minbif       || return 1
-	install -m770 -o64 -g64 -d ${pkgdir}/var/lib/minbif       || return 1
-	install -m770 -o64 -g64 -d ${pkgdir}/var/lib/minbif/users || return 1
+	install -m755 -o67 -g67 -d ${pkgdir}/var/run/minbif       || return 1
+	install -m770 -o67 -g67 -d ${pkgdir}/var/lib/minbif       || return 1
+	install -m770 -o67 -g67 -d ${pkgdir}/var/lib/minbif/users || return 1
 
 	install -m755 -D ${srcdir}/minbif.rcd    ${pkgdir}/etc/rc.d/minbif     || return 1
 	install -m644 -D ${srcdir}/minbif.xinetd ${pkgdir}/etc/xinetd.d/minbif || return 1
