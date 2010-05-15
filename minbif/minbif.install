@@ -22,12 +22,3 @@ pre_remove() {
 	userdel  minbif &> /dev/null
 	groupdel minbif &> /dev/null
 }
-
-post_remove() {
-	/bin/true
-}
-
-op=$1
-shift
-
-$op $*
