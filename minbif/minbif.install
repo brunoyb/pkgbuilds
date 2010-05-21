@@ -1,10 +1,13 @@
 post_install() {
 	if [ ! `grep minbif /etc/group` ]
 	then
-		groupadd -g 67 minbif &> /dev/null
+		groupadd -g 67 minbif
 	fi
 
-	id minbif &> /dev/null || useradd -u 67 -g minbif -d /var/lib/minbif -s /bin/false minbif
+	if [ ! `id minbif` ]
+	then
+		useradd -u 67 -g minbif -d /var/lib/minbif -s /bin/false minbif
+	fi
 
 	chown -R minbif:minbif /var/run/minbif
 	chown -R minbif:minbif /var/lib/minbif
