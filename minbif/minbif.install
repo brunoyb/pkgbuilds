@@ -4,7 +4,7 @@ post_install() {
 		groupadd -g 67 minbif
 	fi
 
-	if [ ! `id minbif` ]
+	if [ ! `id minbif &> /dev/null` ]
 	then
 		useradd -u 67 -g minbif -d /var/lib/minbif -s /bin/false minbif
 	fi
