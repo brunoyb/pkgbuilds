@@ -18,24 +18,24 @@ md5sums=('94a8120fa5bf2df06f9081bf89cd74f7'
          '4c4c24a760f58b3ce17281dfaf87d6cd')
 
 build() {
-	cd ${srcdir}/${pkgname/emacs-/}-${pkgver}
+	cd "${srcdir}/${pkgname/emacs-/}-${pkgver}"
 
 	sed -i -e "s|/usr/local|/usr|" pov-mode.el || return 1
 }
 
 package() {
-	cd ${srcdir}/${pkgname/emacs-/}-${pkgver}
+	cd "${srcdir}/${pkgname/emacs-/}-${pkgver}"
 
-	_infodir=${pkgdir}/usr/share/info
-	_installdir=${pkgdir}/usr/share/emacs/site-lisp/pov-mode
+	_infodir="${pkgdir}/usr/share/info"
+	_installdir="${pkgdir}/usr/share/emacs/site-lisp/pov-mode"
 
-	install -d -m755 ${_infodir} ${_installdir}/InsertMenu || return 1
+	install -d -m755 "${_infodir}" "${_installdir}/InsertMenu" || return 1
 
-	install -m644 pov-mode.info -t ${_infodir}    || return 1
-	install -m644 pov-mode.el   -t ${_installdir} || return 1
-	install -m644 povview.xpm   -t ${_installdir} || return 1
-	install -m644 povrender.xpm -t ${_installdir} || return 1
+	install -m644 pov-mode.info -t "${_infodir}"    || return 1
+	install -m644 pov-mode.el   -t "${_installdir}" || return 1
+	install -m644 povview.xpm   -t "${_installdir}" || return 1
+	install -m644 povrender.xpm -t "${_installdir}" || return 1
 
-	bsdtar -xzf ${srcdir}/${_imname}-${_imver}.tar.gz \
-	         -C ${_installdir}/InsertMenu || return 1
+	bsdtar -xzf "${srcdir}/${_imname}-${_imver}.tar.gz" \
+	         -C "${_installdir}/InsertMenu" || return 1
 }
