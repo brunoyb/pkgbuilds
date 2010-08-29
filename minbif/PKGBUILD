@@ -6,7 +6,7 @@ pkgver=1.0.3
 pkgrel=3
 pkgdesc="An IRC to IM gateway (like BitlBee) that uses libpurple (from Pidgin)"
 arch=('i686' 'x86_64')
-url="http://symlink.me/wiki/minbif"
+url="http://minbif.im/"
 license=('GPL2')
 depends=('gnutls' 'libcaca' 'libpurple')
 makedepends=('cmake')
@@ -15,7 +15,7 @@ backup=("etc/minbif/minbif.conf"
         "etc/minbif/minbif.motd"
         "etc/xinetd.d/minbif")
 install="minbif.install"
-source=("http://symlink.me/attachments/download/50/${pkgname}-${pkgver}.tar.gz"
+source=("http://minbif.im/attachments/download/50/${pkgname}-${pkgver}.tar.gz"
         "minbif.rcd"
         "minbif.xinetd")
 md5sums=('c08add6234a6dd4a45b46b590fa63268'
