@@ -41,18 +41,18 @@ build() {
 package() {
 	cd "${srcdir}/${pkgname}-${pkgver}"
 
-	install -d -m755 "${pkgdir}/var/run" || return 1
-	install -d -m755 "${pkgdir}/var/lib" || return 1
+	install -dm 755 "${pkgdir}/var/run" || return 1
+	install -dm 755 "${pkgdir}/var/lib" || return 1
 
-	install -d -m755 -o67 -g67 "${pkgdir}/var/run/minbif"       || return 1
-	install -d -m770 -o67 -g67 "${pkgdir}/var/lib/minbif"       || return 1
-	install -d -m770 -o67 -g67 "${pkgdir}/var/lib/minbif/users" || return 1
+	install -dm 755 -o 67 -g 67 "${pkgdir}/var/run/minbif"       || return 1
+	install -dm 770 -o 67 -g 67 "${pkgdir}/var/lib/minbif"       || return 1
+	install -dm 770 -o 67 -g 67 "${pkgdir}/var/lib/minbif/users" || return 1
 
-	install -D -m755 "${srcdir}/minbif.rcd" \
-	                 "${pkgdir}/etc/rc.d/minbif" || return 1
+	install -Dm 755 "${srcdir}/minbif.rcd" \
+	                "${pkgdir}/etc/rc.d/minbif" || return 1
 
-	install -D -m644 "${srcdir}/minbif.xinetd" \
-	                 "${pkgdir}/etc/xinetd.d/minbif" || return 1
+	install -Dm 644 "${srcdir}/minbif.xinetd" \
+	                "${pkgdir}/etc/xinetd.d/minbif" || return 1
 
 	make DESTDIR="${pkgdir}" install || return 1
 }
