@@ -1,8 +1,8 @@
 # Maintainer: AkiraYB <brunoyb!yahoo,com,br>
 
 pkgname=minbif
-pkgver=1.0.3
-pkgrel=3
+pkgver=1.0.4
+pkgrel=1
 pkgdesc="An IRC to IM gateway (like BitlBee) that uses libpurple (from Pidgin)"
 arch=('i686' 'x86_64')
 url="http://minbif.im/"
@@ -14,17 +14,17 @@ backup=("etc/minbif/minbif.conf"
         "etc/minbif/minbif.motd"
         "etc/xinetd.d/minbif")
 install="minbif.install"
-source=("http://minbif.im/attachments/download/50/${pkgname}-${pkgver}.tar.gz"
+source=("http://minbif.im/attachments/download/90/${pkgname}-${pkgver}.tar.gz"
         "minbif.rcd"
         "minbif.xinetd")
-md5sums=('c08add6234a6dd4a45b46b590fa63268'
+md5sums=('25069fb6015dfb9ddc24ef2e09e74da3'
          '6bf519569c34514f84689b4cfbaf0bf4'
          'da02518644a583124d7ed839f5eab6c5')
 
 build() {
 	cd "${srcdir}/${pkgname}-${pkgver}"
 
-	# compile with default options + ENABLE_VIDEO=ON + ENABLE_TLS=ON
+	# compile with default options + ENABLE_VIDEO=ON
 	make PREFIX=/usr             \
 	     CONF_PREFIX=/etc/minbif \
 	     ENABLE_MINBIF=ON        \
@@ -32,7 +32,7 @@ build() {
 	     ENABLE_CACA=ON          \
 	     ENABLE_VIDEO=ON         \
 	     ENABLE_PLUGIN=OFF       \
-	     ENABLE_PAM=OFF          \
+	     ENABLE_PAM=ON           \
 	     ENABLE_TLS=ON           \
 	     DEBUG=OFF || return 1
 }
