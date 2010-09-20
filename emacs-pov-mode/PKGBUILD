@@ -1,4 +1,4 @@
-# Contributor: AkiraYB <brunoyb at yahoo dot com dot br>
+# Maintainer: AkiraYB <brunoyb!yahoo,com,br>
 
 pkgname=emacs-pov-mode
 pkgver=3.2
@@ -26,8 +26,8 @@ build() {
 package() {
 	cd "${srcdir}/${pkgname/emacs-/}-${pkgver}"
 
-	_infodir="${pkgdir}/usr/share/info"
-	_installdir="${pkgdir}/usr/share/emacs/site-lisp/pov-mode"
+	local _infodir="${pkgdir}/usr/share/info"
+	local _installdir="${pkgdir}/usr/share/emacs/site-lisp/pov-mode"
 
 	install -dm 755 "${_infodir}" "${_installdir}/InsertMenu" || return 1
 
