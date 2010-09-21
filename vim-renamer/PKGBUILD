@@ -1,0 +1,21 @@
+# Maintainer: AkiraYB <brunoyb!yahoo,com,br>
+
+pkgname=vim-renamer
+pkgver=1.2
+_src_id=13165
+pkgrel=5
+pkgdesc="A Vim plugin that helps you to rename groups of files"
+arch=('any')
+url="http://www.vim.org/scripts/script.php?script_id=1721"
+license=('GPL')
+depends=('vim')
+groups=('vim-plugins')
+source=("renamer.vim::http://www.vim.org/scripts/download_script.php?src_id=${_src_id}")
+md5sums=('a78808d43e72db6a0b18e728ab940944')
+
+package() {
+	local _installdir="${pkgdir}/usr/share/vim/vimfiles/plugin"
+
+	install -dm 755 "${_installdir}" || return 1
+	install -m 644 "${srcdir}/renamer.vim" -t "${_installdir}" || return 1
+}
