@@ -1,0 +1,28 @@
+# Maintainer: AkiraYB <brunoyb!yahoo,com,br>
+
+pkgname=cfv
+pkgver=1.18.3
+pkgrel=2
+pkgdesc="An utility to both test and create checksum files"
+arch=('any')
+url="http://cfv.sourceforge.net/"
+license=('GPL')
+depends=('python')
+optdepends=("pil: for creation the dimensions column of .crc files"
+            "python-fchksum: for increase checksumming speed a bit"
+            "bittorrent: for torrent checking")
+source=("http://downloads.sourceforge.net/${pkgname}/${pkgname}-${pkgver}.tar.gz")
+md5sums=('1be9039c2ab859103d70b6c4f4e5edf5')
+
+build() {
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
+	sed -e "s|/usr/bin/install|/bin/install|" \
+	    -e "s|/usr/local|/usr|" -i Makefile || return 1
+}
+
+package() {
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
+	make DESTDIR="${pkgdir}" install || return 1
+}
