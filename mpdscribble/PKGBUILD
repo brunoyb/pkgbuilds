@@ -1,0 +1,30 @@
+# Maintainer: AkiraYB <brunoyb!yahoo,com,br>
+
+pkgname=mpdscribble
+pkgver=0.19
+pkgrel=2
+pkgdesc="MPD client which submits track info to audioscrobbler"
+arch=('i686' 'x86_64')
+url="http://mpd.wikia.com/wiki/Client:Mpdscribble"
+license='GPL'
+depends=('libmpdclient' 'libsoup')
+source=("http://downloads.sourceforge.net/musicpd/${pkgname}-${pkgver}.tar.bz2")
+md5sums=('164443621660d268d98b4aaa249d0901')
+
+build() {
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
+	sed -e "s/ f=/ /" -i Makefile.in || return 1
+
+	./configure --prefix=/usr                           \
+	            --sysconfdir=/usr/share/doc/mpdscribble \
+	            --with-http-client=soup || return 1
+
+	make || return 1
+}
+
+package() {
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
+	make DESTDIR="${pkgdir}" install || return 1
+}
