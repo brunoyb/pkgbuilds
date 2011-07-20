@@ -1,0 +1,74 @@
+# Maintainer: AkiraYB <brunoyb!yahoo,com,br>
+
+pkgname=minbif-git
+pkgver=20110720
+pkgrel=1
+pkgdesc='An IRC to IM gateway (like BitlBee) that uses libpurple (from Pidgin)'
+arch=('i686' 'x86_64')
+url='http://minbif.im/'
+license=('GPL2')
+depends=('gnutls' 'libcaca' 'libpurple')
+makedepends=('cmake' 'git')
+optdepends=('xinetd: to run minbif through xinetd')
+provides=('minbif')
+conflicts=('minbif')
+backup=('etc/minbif/minbif.conf'
+        'etc/minbif/minbif.motd'
+        'etc/xinetd.d/minbif')
+install='minbif.install'
+source=('minbif.rcd'
+        'minbif.xinetd')
+sha256sums=('61b33c668f4f9137fb63caf1494acd2c5eaa7db9e9917393c940c765b6a79dbc'
+            '77d49f2685c090c1518e3ea871a1637add445c677cb3c21b92686d23f5e4f5d6')
+
+_gitroot='git://git.symlink.me/pub/romain/minbif.git'
+_gitname=minbif
+
+build()
+{
+	cd "$srcdir"
+
+	msg 'Connecting to Git server...'
+
+	if [ -d "$_gitname" ]
+	then
+		cd "$_gitname" && git pull origin
+		msg 'The local files are updated.'
+	else
+		git clone "$_gitroot"
+	fi
+
+	msg 'Git checkout done or server timeout.'
+	msg 'Starting make...'
+
+	rm -rf "${srcdir}/${_gitname}-build"
+	cp -r "${srcdir}/${_gitname}" "${srcdir}/${_gitname}-build"
+	cd "${srcdir}/${_gitname}-build"
+
+	# compile with default options + ENABLE_VIDEO=ON
+	make PREFIX=/usr \
+	     CONF_PREFIX=/etc/minbif \
+	     ENABLE_MINBIF=ON \
+	     ENABLE_IMLIB=ON \
+	     ENABLE_CACA=ON \
+	     ENABLE_VIDEO=ON \
+	     ENABLE_PLUGIN=OFF \
+	     ENABLE_PAM=ON \
+	     ENABLE_TLS=ON \
+	     DEBUG=OFF
+}
+
+package()
+{
+	cd "${srcdir}/${_gitname}-build"
+
+	install -dm 770 -o 67 -g 67 "${pkgdir}/var/lib/minbif"
+	install -dm 770 -o 67 -g 67 "${pkgdir}/var/lib/minbif/users"
+
+	install -Dm 755 "${srcdir}/minbif.rcd" \
+	                "${pkgdir}/etc/rc.d/minbif"
+	install -Dm 644 "${srcdir}/minbif.xinetd" \
+	                "${pkgdir}/etc/xinetd.d/minbif"
+
+	make DESTDIR="$pkgdir" install
+}
