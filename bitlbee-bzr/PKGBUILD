@@ -1,0 +1,71 @@
+# Maintainer: AkiraYB <brunoyb!yahoo,com,br>
+
+pkgname=bitlbee-bzr
+pkgver=801
+pkgrel=1
+pkgdesc='Brings instant messaging (XMPP, MSN, Yahoo!, AIM, ICQ, Twitter) to IRC'
+arch=('i686' 'x86_64')
+url='http://www.bitlbee.org/'
+license=('GPL')
+depends=('glib2' 'gnutls' 'libotr')
+makedepends=('bzr' 'docbook-xsl' 'links' 'xmlto') # xmlto needs lynx|w3m|links
+optdepends=('xinetd: to run bitlbee through xinetd')
+provides=('bitlbee')
+conflicts=('bitlbee')
+backup=('etc/bitlbee/bitlbee.conf'
+        'etc/bitlbee/motd.txt'
+        'etc/xinetd.d/bitlbee')
+install='bitlbee.install'
+source=('bitlbee.rcd'
+        'bitlbee.xinetd')
+sha256sums=('5ea0d1ab835ee570b8011543dedaa4522b88bedc07cceff03afb681b49dd6c47'
+            '6dde38c9d81628e44ad6af82db054405fa1ee7141bab006915b6d42a83c98e99')
+
+_bzrtrunk='http://code.bitlbee.org/bitlbee/'
+_bzrmod=bitlbee
+
+build()
+{
+	cd "$srcdir"
+
+	msg 'Connecting to Bazaar server...'
+
+	if [ -d "$_bzrmod" ]
+	then
+		cd "$_bzrmod" && bzr pull "$_bzrtrunk"
+		msg 'The local files are updated.'
+	else
+		bzr checkout "$_bzrtrunk" "$_bzrmod"
+	fi
+
+	msg 'Bazaar checkout done or server timeout.'
+	msg 'Starting make...'
+
+	rm -rf "${srcdir}/${_bzrmod}-build"
+	cp -r "${srcdir}/${_bzrmod}" "${srcdir}/${_bzrmod}-build"
+	cd "${srcdir}/${_bzrmod}-build"
+
+	./configure --prefix=/usr \
+	            --etcdir=/etc/bitlbee \
+	            --pidfile=/var/run/bitlbee/bitlbee.pid \
+	            --ipcsocket=/var/run/bitlbee/bitlbee.sock \
+	            --systemdsystemunitdir=/lib/systemd/system \
+	            --ssl=gnutls \
+	            --otr=1
+
+	make
+}
+
+package()
+{
+	cd "${srcdir}/${_bzrmod}-build"
+
+	install -dm 770 -o 65 -g 65 "${pkgdir}/var/lib/bitlbee"
+
+	install -Dm 755 "${srcdir}/bitlbee.rcd" \
+	                "${pkgdir}/etc/rc.d/bitlbee"
+	install -Dm 644 "${srcdir}/bitlbee.xinetd" \
+	                "${pkgdir}/etc/xinetd.d/bitlbee"
+
+	make DESTDIR="$pkgdir" install install-etc install-dev
+}
