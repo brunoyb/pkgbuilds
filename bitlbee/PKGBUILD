@@ -1,0 +1,50 @@
+# Maintainer: AkiraYB <brunoyb!yahoo,com,br>
+
+pkgname=bitlbee
+pkgver=3.0.3
+pkgrel=2
+pkgdesc='Brings instant messaging (XMPP, MSN, Yahoo!, AIM, ICQ, Twitter) to IRC'
+arch=('i686' 'x86_64')
+url='http://www.bitlbee.org/'
+license=('GPL')
+depends=('glib2' 'gnutls' 'libotr')
+optdepends=('xinetd: to run bitlbee through xinetd')
+backup=('etc/bitlbee/bitlbee.conf'
+        'etc/bitlbee/motd.txt'
+        'etc/xinetd.d/bitlbee')
+install='bitlbee.install'
+source=("http://get.bitlbee.org/src/${pkgname}-${pkgver}.tar.gz"
+        'bitlbee.rcd'
+        'bitlbee.xinetd')
+sha256sums=('82ca758937ce7bedaab49edec75f4ad45a3102ac3beaa932b64c34fbb1e3af25'
+            '5ea0d1ab835ee570b8011543dedaa4522b88bedc07cceff03afb681b49dd6c47'
+            '6dde38c9d81628e44ad6af82db054405fa1ee7141bab006915b6d42a83c98e99')
+
+build()
+{
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
+	./configure --prefix=/usr \
+	            --etcdir=/etc/bitlbee \
+	            --pidfile=/var/run/bitlbee/bitlbee.pid \
+	            --ipcsocket=/var/run/bitlbee/bitlbee.sock \
+	            --systemdsystemunitdir=/lib/systemd/system \
+	            --ssl=gnutls \
+	            --otr=1
+
+	make
+}
+
+package()
+{
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
+	install -dm 770 -o 65 -g 65 "${pkgdir}/var/lib/bitlbee"
+
+	install -Dm 755 "${srcdir}/bitlbee.rcd" \
+	                "${pkgdir}/etc/rc.d/bitlbee"
+	install -Dm 644 "${srcdir}/bitlbee.xinetd" \
+	                "${pkgdir}/etc/xinetd.d/bitlbee"
+
+	make DESTDIR="$pkgdir" install install-etc install-dev
+}
