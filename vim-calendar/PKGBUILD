@@ -1,0 +1,22 @@
+# Maintainer: AkiraYB <brunoyb!yahoo,com,br>
+
+pkgname=vim-calendar
+pkgver=2.5
+_src_id=14880
+pkgrel=1
+pkgdesc='A Vim plugin that creates a calendar window'
+arch=('any')
+url='http://www.vim.org/scripts/script.php?script_id=52'
+license=('unknown')
+groups=('vim-plugins')
+depends=('vim')
+source=("calendar.vim::http://www.vim.org/scripts/download_script.php?src_id=${_src_id}")
+sha256sums=('be3ea0380ac3eb801e91a534d4362b8a81ff6835561c27b8b7b13790d564ef9f')
+
+package()
+{
+	local _installdir="${pkgdir}/usr/share/vim/vimfiles/plugin"
+
+	install -d "${_installdir}"
+	install -m 644 "${srcdir}/calendar.vim" -t "${_installdir}"
+}
