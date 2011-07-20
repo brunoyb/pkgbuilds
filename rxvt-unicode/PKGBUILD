@@ -1,0 +1,58 @@
+# Maintainer: AkiraYB <brunoyb!yahoo,com,br>
+
+pkgname=rxvt-unicode
+pkgver=9.12
+pkgrel=1
+pkgdesc='An unicode enabled rxvt-clone terminal emulator (urxvt)'
+arch=('i686' 'x86_64')
+url='http://software.schmorp.de/pkg/rxvt-unicode.html'
+license=('GPL')
+depends=('gcc-libs' 'gdk-pixbuf2' 'libxft')
+optdepends=('perl: lots of utilities'
+            'gtk2-perl: to use the urxvt-tabbed')
+source=("http://dist.schmorp.de/rxvt-unicode/${pkgname}-${pkgver}.tar.bz2"
+        'rxvt-unicode.desktop'
+        'rxvt-unicode.patch')
+sha256sums=('1db334204bfb264b3134e01d9d3cf446c5ac7d47514909435f914f3906f37e7e'
+            '61b14cee1bd0a7010112e8961ef01cd19404a131555315341b46b94c41f1fad4'
+            '85812e2eb5b78bd9d94d4ca9c97c9aaa471b95816e46b3c4ad33e913896b34c1')
+
+build()
+{
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
+	patch -p1 -i "${srcdir}/rxvt-unicode.patch"
+
+	sed -e 's/"rxvt"/"urxvt"/' -i doc/rxvt-tabbed
+
+	./configure --prefix=/usr \
+	            --with-terminfo=/usr/share/terminfo \
+	            --disable-frills \
+	            --enable-256-color \
+	            --enable-font-styles \
+	            --enable-keepscrolling \
+	            --enable-lastlog \
+	            --enable-pixbuf \
+	            --enable-selectionscrolling \
+	            --enable-smart-resize \
+	            --enable-transparency \
+	            --enable-utmp \
+	            --enable-wtmp \
+	            --enable-xim
+
+	make
+}
+
+package()
+{
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
+	local _appdir="${pkgdir}/usr/share/applications"
+	local _terminfodir="${pkgdir}/usr/share/terminfo"
+
+	install -d "${_appdir}" "${_terminfodir}"
+	install -m 644 "${srcdir}/rxvt-unicode.desktop" -t "${_appdir}"
+	install -Dm 755 doc/rxvt-tabbed "${pkgdir}/usr/bin/urxvt-tabbed"
+
+	make TERMINFO="$_terminfodir" DESTDIR="$pkgdir" install
+}
