@@ -1,27 +1,29 @@
-post_install() {
+post_install()
+{
 	if ! grep -qs ^minbif: /etc/group
 	then
-		groupadd -g 67 minbif
+		groupadd -r -g 67 minbif
 	fi
 
 	if ! grep -qs ^minbif: /etc/passwd
 	then
-		useradd -u 67 -g minbif -d /var/lib/minbif -s /bin/false minbif
+		useradd -r -u 67 -g minbif \
+		        -d /var/lib/minbif \
+		        -s /bin/false -c minbif minbif
 	fi
 
-	chown -R minbif:minbif /var/run/minbif
 	chown -R minbif:minbif /var/lib/minbif
-
-	chmod 755 /var/run/minbif
 	chmod 770 /var/lib/minbif
 	chmod 770 /var/lib/minbif/users
 }
 
-post_upgrade() {
+post_upgrade()
+{
 	post_install $1
 }
 
-post_remove() {
+post_remove()
+{
 	if grep -qs ^minbif: /etc/passwd
 	then
 		userdel minbif
