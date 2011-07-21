@@ -1,0 +1,153 @@
+INFORMATION
+===========
+
+This repository was first created as a experiment to play with Git. I maintain
+here some PKGBUILDs for the Arch Linux Distribution that I have some interest.
+
+In the beginning, I just used this for the minbif PKGBUILD, which was in the
+AUR before going to the community repository. Since then, I have added some
+other packages and I try to keep then up-to-date.
+
+All the packages here have some kind of modification when compared to the
+original ones. I tend to adapt all of them to my style. But when I say that
+they are "the same", I mean that the final product is very similar to the
+original one. :)
+
+PACKAGES
+========
+
+Here's a little description of how I ended up making each of these packages.
+
+bitlbee
+-------
+
+I thought it would be a good idea to make a bitlbee package using the PKGBUILD
+from minbif as a base. So here it is!
+
+It's basically the same as the one in the extra repo. The only change is that
+this version uses gnutls instead of openssl. And "fix a little bug" (not really
+a bug) that prints an error message when removing the official package.
+
+Although the rcd script is totally different from the one shipped with the
+official package it's hopefully working the same, with the "benefit" of sharing
+the very same code as the one used for minbif with very little changes. I don't
+really tested it very much as I prefer to use the xinetd mode so, feel free to
+test it and send me a bug report if you find one. :)
+
+bitlbee-bzr
+-----------
+
+The Bazaar version of the bitlbee package.
+
+emacs-pov-mode
+--------------
+
+I was messing around with Emacs when I was doing a class that used POV-Ray. So
+I created this package that installs the pov-mode for Emacs (InsertMenu
+included). This package is in the AUR:
+
+https://aur.archlinux.org/packages.php?ID=37408
+
+I'm not using Emacs exhaustively anymore, so I don't use this package. This
+mode isn't actively developed so, I'll continue to maintain it as it doesn't
+really bothers me to take a look at it from time to time. But if anyone is
+interested in continuing to improve and update (almost never), I can disown the
+package. :)
+
+minbif
+------
+
+This is the first PKGBUILD that I posted in AUR. It's now in the community repo
+so, there's no need to continue using this package. However, I'll continue to
+update this package as before.
+
+The only difference between this and the official one is that this is built
+with VIDEO support and includes a xinetd script. You can tell me that VIDEO is
+useless, but I think it's worth because it doesn't add any new dependency.
+Well, you can disable it very easily if you want to. :)
+
+Although the rcd script is totally different from the one shipped with the
+official package it's hopefully working the same, with the "benefit" of sharing
+the very same code as the one used for bitlbee with very little changes. I
+don't really tested it very much as I prefer to use the xinetd mode so, feel
+free to test it and send me a bug report if you find one. :)
+
+I'm not using minbif anymore because I don't like the libpurple stuff very
+much. So I switched back to bitlbee (which moved after the birth of minbif :)).
+Nevertheless it's highly recommended if you don't mind the libpurple stuff!
+
+P.S.: bitlbee too can support libpurple, it's actually very easy to use the
+package from here to build a libpurple capable bitlbee. But I can't tell if the
+support is as good as in minbif.
+
+minbif-git
+----------
+
+The Git version of the minbif package.
+
+mpdscribble
+-----------
+
+I made this package because of a incompatibility introduced by curl 7.21.1, so
+we had to use soup instead. Now the upstream release fixed this issue and we
+can switch back from libsoup to curl again. Again, the official package from
+the community repo is almost the same as this, and there's no reason to use
+this package anymore. :( But I'll continue to maintain this, trying to bring
+the newest versions here earlier.
+
+Some differences about this package compared to the official is that I already
+have made the switch back to curl. And I don't "move" the config file from
+/etc/mpdscribble.conf to /etc/modscribble.conf.example. The reason is that, you
+have to change the mode from 600 to 644, so the normal user can copy the file
+to your home directory. As a consequence, the root user has to manually chmod
+the file back to 600 to protect the password in the file when using mpdscribble
+system-wide. Instead, what I do is to preserve the /etc/mpdscribble.conf file
+"as is" (with mode 600) and make a copy of the config file with mode 644 in
+/usr/share/doc/mpdscribble/mpdscribble.conf, so users can have a reference for
+per-user use.
+
+rxvt-unicode
+------------
+
+This is a mixed version of the package from the extra repo and the
+rxvt-unicode-patched (https://aur.archlinux.org/packages.php?ID=44649) from
+AUR. It just uses the patch font-fix (a modified version of it) from the AUR
+package and not the layout-gaps one.
+
+I was a bit annoyed with the fact that Xft fonts was rendered differently
+between xterm and urxvt. So I began to investigate. They say that a picture is
+worth a thousand words. So, let's see.
+
+xterm: http://imgur.com/z8QCU?full
+rxvt-unicode-extra (from extra): http://imgur.com/7ZCtL?full
+rxvt-unicode-patched (from AUR): http://imgur.com/TCXHq?full
+rxvt-unicode-this (this one): http://imgur.com/9SXCZ?full
+
+As you can see, the final result is that the behaviour is identical to the one
+presented by xterm. I think it's a question of preference... But I prefer the
+result you got using this patch, because you can tweak the line spacing anyway
+using the "lineSpace" resource (-lsp) and increase the line space to get the
+result you want, but unlike the "letterSpace" resource (-letsp) that allows you
+to set negative values, this "lineSpace" resource don't.
+
+I don't really know if this patch is the real fix for this "issue", but it's
+working so far for me. I posted the code for a patch that can be used with the
+rxvt-unicode-patched (https://aur.archlinux.org/packages.php?ID=44649) from AUR
+in the link below, just replace the font-width-fix.patch with this one:
+
+http://pastebin.com/ykZW4TED
+
+vim-calendar and vim-renamer
+----------------------------
+
+I use these packages when the AUR ones are out-of-date. They're basically the
+same, just the license is changed to "unknown" which I think it's more
+"appropriated".
+
+FINALLY
+=======
+
+I hope some of these packages can be useful to someone! And I'm not so
+confident with my English skills so, sorry if it was a bit confusing. :(
+
+Enjoy!
