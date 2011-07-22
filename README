@@ -54,6 +54,12 @@ really bothers me to take a look at it from time to time. But if anyone is
 interested in continuing to improve and update (almost never), I can disown the
 package. :)
 
+hunspell-pt-br, hyphen-pt-br and mythes-pt-br
+---------------------------------------------
+
+There wasn't a mythes-pt-br package in AUR so I made one! And to keep things
+standard, I ended up creating packages for hunspell-pt-br and hyphe-pt-br too.
+
 minbif
 ------
 
