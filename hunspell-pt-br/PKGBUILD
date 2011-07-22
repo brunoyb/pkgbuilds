@@ -27,7 +27,7 @@ package()
 	pushd "$_dictsdir"
 	for file in $(ls "$_hunspelldir")
 	do
-		ln -sv "/usr/share/hunspell/$file" .
+		ln -sv "/usr/share/hunspell/${file}" .
 	done
 	popd
 
