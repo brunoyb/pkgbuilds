@@ -1,0 +1,34 @@
+# Maintainer: AkiraYB <brunoyb!yahoo,com,br>
+
+pkgname=hyphen-pt-br
+pkgver=2.0.9
+pkgrel=1
+pkgdesc='Portuguese (Brazil) hyphenation rules'
+arch=('any')
+url='http://www.broffice.org/verortografico/'
+license=('LGPL2.1')
+optdepends=('hyphen: offers hyphenation library functions')
+source=('http://www.broffice.org/files/Vero_pt_BR_V209AOC.oxt')
+sha256sums=('45705ee542bb71a115cf9c80ce035a1bc3bcf9483c88d5e3a993d59a1b79ff0a')
+
+package()
+{
+	cd "$srcdir"
+
+	local _hyphendir="${pkgdir}/usr/share/hyphen"
+	local _dictsdir="${pkgdir}/usr/share/myspell/dicts"
+	local _docdir="${pkgdir}/usr/share/doc/hyphen-pt-br"
+
+	install -d "$_hyphendir" "$_dictsdir" "$_docdir"
+
+	install -m 644 hyph_pt_BR.dic -t "$_hyphendir"
+
+	pushd "$_dictsdir"
+	for file in $(ls "$_hyphendir")
+	do
+		ln -sv "/usr/share/hyphen/$file" .
+	done
+	popd
+
+	install -m 644 README_hyph_pt_BR.TXT -t "$_docdir"
+}
