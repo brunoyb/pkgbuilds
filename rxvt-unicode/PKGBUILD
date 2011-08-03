@@ -7,9 +7,8 @@ pkgdesc='An unicode enabled rxvt-clone terminal emulator (urxvt)'
 arch=('i686' 'x86_64')
 url='http://software.schmorp.de/pkg/rxvt-unicode.html'
 license=('GPL')
-depends=('gcc-libs' 'gdk-pixbuf2' 'libxft')
-optdepends=('perl: lots of utilities'
-            'gtk2-perl: to use the urxvt-tabbed')
+depends=('gcc-libs' 'gdk-pixbuf2' 'libxft' 'perl')
+optdepends=('gtk2-perl: to use urxvt-tabbed')
 source=("http://dist.schmorp.de/rxvt-unicode/${pkgname}-${pkgver}.tar.bz2"
         'rxvt-unicode.desktop'
         'rxvt-unicode.patch')
