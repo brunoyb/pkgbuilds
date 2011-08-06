@@ -18,7 +18,7 @@ backup=('etc/bitlbee/bitlbee.conf'
 install='bitlbee.install'
 source=('bitlbee.rcd'
         'bitlbee.xinetd')
-sha256sums=('5ea0d1ab835ee570b8011543dedaa4522b88bedc07cceff03afb681b49dd6c47'
+sha256sums=('d2540ad33485ab609c54da7aea9d2d9bc3e67f43ce17ec0e7cbe13ba0ac63a33'
             '6dde38c9d81628e44ad6af82db054405fa1ee7141bab006915b6d42a83c98e99')
 
 _bzrtrunk='http://code.bitlbee.org/bitlbee/'
