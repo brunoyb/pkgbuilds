@@ -17,7 +17,7 @@ source=("http://get.bitlbee.org/src/${pkgname}-${pkgver}.tar.gz"
         'bitlbee.rcd'
         'bitlbee.xinetd')
 sha256sums=('82ca758937ce7bedaab49edec75f4ad45a3102ac3beaa932b64c34fbb1e3af25'
-            '5ea0d1ab835ee570b8011543dedaa4522b88bedc07cceff03afb681b49dd6c47'
+            'd2540ad33485ab609c54da7aea9d2d9bc3e67f43ce17ec0e7cbe13ba0ac63a33'
             '6dde38c9d81628e44ad6af82db054405fa1ee7141bab006915b6d42a83c98e99')
 
 build()
