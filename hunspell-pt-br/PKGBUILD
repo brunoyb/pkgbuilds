@@ -8,7 +8,7 @@ arch=('any')
 url='http://www.broffice.org/verortografico/'
 license=('LGPL2.1')
 optdepends=('hunspell: the spell checking libraries and apps')
-changelog='hunspell-pt-br.changelog'
+changelog="${pkgname}.changelog"
 source=('http://www.broffice.org/files/Vero_pt_BR_V209AOC.oxt')
 sha256sums=('45705ee542bb71a115cf9c80ce035a1bc3bcf9483c88d5e3a993d59a1b79ff0a')
 
