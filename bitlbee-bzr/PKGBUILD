@@ -15,9 +15,9 @@ conflicts=('bitlbee')
 backup=('etc/bitlbee/bitlbee.conf'
         'etc/bitlbee/motd.txt'
         'etc/xinetd.d/bitlbee')
-install='bitlbee.install'
-source=('bitlbee.rcd'
-        'bitlbee.xinetd')
+install='bitlbee-bzr.install'
+source=('bitlbee-bzr.rcd'
+        'bitlbee-bzr.xinetd')
 sha256sums=('d2540ad33485ab609c54da7aea9d2d9bc3e67f43ce17ec0e7cbe13ba0ac63a33'
             '6dde38c9d81628e44ad6af82db054405fa1ee7141bab006915b6d42a83c98e99')
 
@@ -62,9 +62,9 @@ package()
 
 	install -dm 770 -o 65 -g 65 "${pkgdir}/var/lib/bitlbee"
 
-	install -Dm 755 "${srcdir}/bitlbee.rcd" \
+	install -Dm 755 "${srcdir}/bitlbee-bzr.rcd" \
 	                "${pkgdir}/etc/rc.d/bitlbee"
-	install -Dm 644 "${srcdir}/bitlbee.xinetd" \
+	install -Dm 644 "${srcdir}/bitlbee-bzr.xinetd" \
 	                "${pkgdir}/etc/xinetd.d/bitlbee"
 
 	make DESTDIR="$pkgdir" install install-etc install-dev
