@@ -32,8 +32,7 @@ package()
 
 	install -d "${_cachedir}" "${_docdir}"
 	install -m 644 doc/mpdscribble.conf -t "${_docdir}"
-	install -Dm 755 "${srcdir}/mpdscribble.rcd" \
-	                "${pkgdir}/etc/rc.d/mpdscribble"
+	install -D "${srcdir}/mpdscribble.rcd" "${pkgdir}/etc/rc.d/mpdscribble"
 
 	make DESTDIR="$pkgdir" install
 }
