@@ -1,6 +1,7 @@
 # Maintainer: AkiraYB <brunoyb!yahoo,com,br>
 
 pkgname=minbif-git
+_pkgname=minbif
 pkgver=20110806
 pkgrel=1
 pkgdesc='An IRC to IM gateway (like BitlBee) that uses libpurple (from Pidgin)'
@@ -10,15 +11,15 @@ license=('GPL2')
 depends=('gcc-libs' 'gnutls' 'libcaca' 'libpurple')
 makedepends=('cmake' 'git')
 optdepends=('xinetd: to run minbif through xinetd')
-provides=('minbif')
-conflicts=('minbif')
+provides=("${_pkgname}")
+conflicts=("${_pkgname}")
 backup=('etc/minbif/minbif.conf'
         'etc/minbif/minbif.motd'
         'etc/xinetd.d/minbif')
-install="${pkgname}.install"
-changelog="${pkgname}.changelog"
-source=("${pkgname}.rcd"
-        "${pkgname}.xinetd")
+install="${_pkgname}.install"
+changelog="${_pkgname}.changelog"
+source=("${_pkgname}.rcd"
+        "${_pkgname}.xinetd")
 sha256sums=('0827c4ba2772fe67efb7b3462b662aef690614c90eb2a2dc7d0080d3ae95311d'
             '77d49f2685c090c1518e3ea871a1637add445c677cb3c21b92686d23f5e4f5d6')
 
@@ -66,9 +67,9 @@ package()
 	install -dm 770 -o 67 -g 67 "${pkgdir}/var/lib/minbif"
 	install -dm 770 -o 67 -g 67 "${pkgdir}/var/lib/minbif/users"
 
-	install -Dm 755 "${srcdir}/${pkgname}.rcd" \
+	install -Dm 755 "${srcdir}/${_pkgname}.rcd" \
 	                "${pkgdir}/etc/rc.d/minbif"
-	install -Dm 644 "${srcdir}/${pkgname}.xinetd" \
+	install -Dm 644 "${srcdir}/${_pkgname}.xinetd" \
 	                "${pkgdir}/etc/xinetd.d/minbif"
 
 	make DESTDIR="$pkgdir" install
