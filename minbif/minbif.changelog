@@ -1,6 +1,7 @@
-2011-08-06 AkiraYB <brunoyb!yahoo,com,br>
+2011-08-07 AkiraYB <brunoyb!yahoo,com,br>
 
 	* 1.0.4-3 :
+	Use pkgname where applicable
 	Add minbif.changelog
 	Update sha256sums
 
