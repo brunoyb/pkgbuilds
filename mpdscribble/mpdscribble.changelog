@@ -1,6 +1,7 @@
-2011-08-06 AkiraYB <brunoyb!yahoo,com,br>
+2011-08-07 AkiraYB <brunoyb!yahoo,com,br>
 
 	* 0.22-2 :
+	Use pkgname where applicable
 	Add mpdscribble.changelog
 	Update sha256sums
 	Remove -m option from install cmd
