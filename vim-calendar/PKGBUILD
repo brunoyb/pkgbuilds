@@ -10,6 +10,7 @@ url='http://www.vim.org/scripts/script.php?script_id=52'
 license=('unknown')
 groups=('vim-plugins')
 depends=('vim')
+changelog='vim-calendar.changelog'
 source=("calendar.vim::http://www.vim.org/scripts/download_script.php?src_id=${_src_id}")
 sha256sums=('be3ea0380ac3eb801e91a534d4362b8a81ff6835561c27b8b7b13790d564ef9f')
 
