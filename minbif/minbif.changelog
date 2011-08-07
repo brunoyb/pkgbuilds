@@ -1,0 +1,8 @@
+2011-08-06 AkiraYB <brunoyb!yahoo,com,br>
+
+	* 1.0.4-3 :
+	Add minbif.changelog
+	Update sha256sums
+
+	* minbif.rcd :
+	Use stat_die instead of stat_fail

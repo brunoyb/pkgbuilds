@@ -14,6 +14,7 @@ backup=('etc/minbif/minbif.conf'
         'etc/minbif/minbif.motd'
         'etc/xinetd.d/minbif')
 install='minbif.install'
+changelog='minbif.changelog'
 source=("http://minbif.im/attachments/download/90/${pkgname}-${pkgver}.tar.gz"
         'minbif.rcd'
         'minbif.xinetd')
