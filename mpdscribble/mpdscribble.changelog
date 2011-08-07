@@ -1,0 +1,10 @@
+2011-08-06 AkiraYB <brunoyb!yahoo,com,br>
+
+	* 0.22-2 :
+	Add mpdscribble.changelog
+	Update sha256sums
+	Remove -m option from install cmd
+
+	* mpdscribble.rcd :
+	Use stat_die instead of stat_fail
+	Fix creation of empty pidfile

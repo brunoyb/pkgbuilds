@@ -9,6 +9,7 @@ url='http://mpd.wikia.com/wiki/Client:Mpdscribble'
 license=('GPL')
 depends=('curl' 'glib2' 'libmpdclient')
 install='mpdscribble.install'
+changelog='mpdscribble.changelog'
 source=("http://downloads.sourceforge.net/musicpd/${pkgname}-${pkgver}.tar.bz2"
         'mpdscribble.rcd')
 sha256sums=('1cde2b5f8c70f0e3e6f059d01bf0b0f2eac2b29fbcd14b01a8a5103e603feb41'
