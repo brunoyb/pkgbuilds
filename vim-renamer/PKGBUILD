@@ -10,6 +10,7 @@ url='http://www.vim.org/scripts/script.php?script_id=1721'
 license=('unknown')
 groups=('vim-plugins')
 depends=('vim')
+changelog='vim-renamer.changelog'
 source=("renamer.vim::http://www.vim.org/scripts/download_script.php?src_id=${_src_id}")
 sha256sums=('3eccd862966efaa00c149c506a94e52a774071470516d42fe1d069273af7e5d9')
 
