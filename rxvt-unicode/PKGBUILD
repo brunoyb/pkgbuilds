@@ -51,7 +51,7 @@ package()
 
 	install -d "${_appdir}" "${_terminfodir}"
 	install -m 644 "${srcdir}/rxvt-unicode.desktop" -t "${_appdir}"
-	install -Dm 755 doc/rxvt-tabbed "${pkgdir}/usr/bin/urxvt-tabbed"
+	install -D doc/rxvt-tabbed "${pkgdir}/usr/bin/urxvt-tabbed"
 
 	make TERMINFO="$_terminfodir" DESTDIR="$pkgdir" install
 }
