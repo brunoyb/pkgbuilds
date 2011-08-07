@@ -1,6 +1,7 @@
 # Maintainer: AkiraYB <brunoyb!yahoo,com,br>
 
 pkgname=bitlbee-bzr
+_pkgname=bitlbee
 pkgver=803
 pkgrel=1
 pkgdesc='Brings instant messaging (XMPP, MSN, Yahoo!, AIM, ICQ, Twitter) to IRC'
@@ -10,15 +11,15 @@ license=('GPL')
 depends=('glib2' 'gnutls' 'libotr')
 makedepends=('bzr' 'docbook-xsl' 'links' 'xmlto') # xmlto needs lynx|w3m|links
 optdepends=('xinetd: to run bitlbee through xinetd')
-provides=('bitlbee')
-conflicts=('bitlbee')
+provides=("${_pkgname}")
+conflicts=("${_pkgname}")
 backup=('etc/bitlbee/bitlbee.conf'
         'etc/bitlbee/motd.txt'
         'etc/xinetd.d/bitlbee')
-install="${pkgname}.install"
-changelog="${pkgname}.changelog"
-source=("${pkgname}.rcd"
-        "${pkgname}.xinetd")
+install="${_pkgname}.install"
+changelog="${_pkgname}.changelog"
+source=("${_pkgname}.rcd"
+        "${_pkgname}.xinetd")
 sha256sums=('d2540ad33485ab609c54da7aea9d2d9bc3e67f43ce17ec0e7cbe13ba0ac63a33'
             '6dde38c9d81628e44ad6af82db054405fa1ee7141bab006915b6d42a83c98e99')
 
@@ -63,9 +64,9 @@ package()
 
 	install -dm 770 -o 65 -g 65 "${pkgdir}/var/lib/bitlbee"
 
-	install -Dm 755 "${srcdir}/${pkgname}.rcd" \
+	install -Dm 755 "${srcdir}/${_pkgname}.rcd" \
 	                "${pkgdir}/etc/rc.d/bitlbee"
-	install -Dm 644 "${srcdir}/${pkgname}.xinetd" \
+	install -Dm 644 "${srcdir}/${_pkgname}.xinetd" \
 	                "${pkgdir}/etc/xinetd.d/bitlbee"
 
 	make DESTDIR="$pkgdir" install install-etc install-dev
