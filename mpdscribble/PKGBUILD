@@ -12,7 +12,7 @@ install='mpdscribble.install'
 source=("http://downloads.sourceforge.net/musicpd/${pkgname}-${pkgver}.tar.bz2"
         'mpdscribble.rcd')
 sha256sums=('1cde2b5f8c70f0e3e6f059d01bf0b0f2eac2b29fbcd14b01a8a5103e603feb41'
-            '453098c2a3c2411bc527d2960e973b19d2af18c74516576f7afafc8186726f38')
+            'becc35703cfc0b962dadffd6ceeeadfd547650f99798e813385fb5261358c3ef')
 
 build()
 {
