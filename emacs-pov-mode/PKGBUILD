@@ -11,6 +11,7 @@ url='http://xahlee.org/3d/povray_emacs.html'
 license=('GPL')
 depends=('emacs')
 install='emacs-pov-mode.install'
+changelog='emacs-pov-mode.changelog'
 source=("http://xahlee.org/emacs/${pkgname#*-}-${pkgver}.tar.gz"
         "http://www.imagico.de/imenu/${_imname}-${_imver}.tar.gz")
 noextract=("${_imname}-${_imver}.tar.gz")
