@@ -15,7 +15,7 @@ start)
 	then
 		stat_fail
 	else
-		echo $PID > /var/run/mpdscribble.pid
+		pidof -o %PPID /usr/bin/mpdscribble > /var/run/mpdscribble.pid
 		add_daemon mpdscribble
 		stat_done
 	fi
