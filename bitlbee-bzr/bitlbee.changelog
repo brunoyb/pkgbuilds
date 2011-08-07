@@ -1,0 +1,9 @@
+2011-08-07 AkiraYB <brunoyb!yahoo,com,br>
+
+	* 803-1 :
+	Use pkgname where applicable
+	Add bitlbee.changelog
+	Update sha256sums
+
+	* bitlbee.rcd :
+	Use stat_die instead of stat_fail
