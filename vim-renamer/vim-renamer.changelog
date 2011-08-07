@@ -1,4 +1,5 @@
-2011-08-06 AkiraYB <brunoyb!yahoo,com,br>
+2011-08-07 AkiraYB <brunoyb!yahoo,com,br>
 
 	* 1.2-6 :
+	Use pkgname where applicable
 	Add vim-renamer.changelog
