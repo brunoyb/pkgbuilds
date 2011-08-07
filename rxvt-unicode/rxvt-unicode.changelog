@@ -1,5 +1,6 @@
-2011-08-06 AkiraYB <brunoyb!yahoo,com,br>
+2011-08-07 AkiraYB <brunoyb!yahoo,com,br>
 
 	* 9.12-1 :
+	Use pkgname where applicable
 	Add rxvt-unicode.changelog
 	Remove -m option from install cmd
