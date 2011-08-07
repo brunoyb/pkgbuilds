@@ -18,7 +18,7 @@ backup=('etc/minbif/minbif.conf'
 install='minbif.install'
 source=('minbif.rcd'
         'minbif.xinetd')
-sha256sums=('61b33c668f4f9137fb63caf1494acd2c5eaa7db9e9917393c940c765b6a79dbc'
+sha256sums=('0827c4ba2772fe67efb7b3462b662aef690614c90eb2a2dc7d0080d3ae95311d'
             '77d49f2685c090c1518e3ea871a1637add445c677cb3c21b92686d23f5e4f5d6')
 
 _gitroot='git://git.symlink.me/pub/romain/minbif.git'
