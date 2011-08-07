@@ -16,6 +16,7 @@ backup=('etc/bitlbee/bitlbee.conf'
         'etc/bitlbee/motd.txt'
         'etc/xinetd.d/bitlbee')
 install='bitlbee-bzr.install'
+changelog='bitlbee-bzr.changelog'
 source=('bitlbee-bzr.rcd'
         'bitlbee-bzr.xinetd')
 sha256sums=('d2540ad33485ab609c54da7aea9d2d9bc3e67f43ce17ec0e7cbe13ba0ac63a33'
