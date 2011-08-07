@@ -1,0 +1,5 @@
+2011-08-06 AkiraYB <brunoyb!yahoo,com,br>
+
+	* 9.12-1 :
+	Add rxvt-unicode.changelog
+	Remove -m option from install cmd
