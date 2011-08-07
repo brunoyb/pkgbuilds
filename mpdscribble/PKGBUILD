@@ -8,10 +8,10 @@ arch=('i686' 'x86_64')
 url='http://mpd.wikia.com/wiki/Client:Mpdscribble'
 license=('GPL')
 depends=('curl' 'glib2' 'libmpdclient')
-install='mpdscribble.install'
-changelog='mpdscribble.changelog'
+install="${pkgname}.install"
+changelog="${pkgname}.changelog"
 source=("http://downloads.sourceforge.net/musicpd/${pkgname}-${pkgver}.tar.bz2"
-        'mpdscribble.rcd')
+        "${pkgname}.rcd")
 sha256sums=('1cde2b5f8c70f0e3e6f059d01bf0b0f2eac2b29fbcd14b01a8a5103e603feb41'
             'becc35703cfc0b962dadffd6ceeeadfd547650f99798e813385fb5261358c3ef')
 
@@ -33,7 +33,7 @@ package()
 
 	install -d "${_cachedir}" "${_docdir}"
 	install -m 644 doc/mpdscribble.conf -t "${_docdir}"
-	install -D "${srcdir}/mpdscribble.rcd" "${pkgdir}/etc/rc.d/mpdscribble"
+	install -D "${srcdir}/${pkgname}.rcd" "${pkgdir}/etc/rc.d/mpdscribble"
 
 	make DESTDIR="$pkgdir" install
 }
