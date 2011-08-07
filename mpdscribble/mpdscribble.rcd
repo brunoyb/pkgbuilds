@@ -13,7 +13,7 @@ start)
 
 	if [ $? -gt 0 ]
 	then
-		stat_fail
+		stat_die
 	else
 		pidof -o %PPID /usr/bin/mpdscribble > /var/run/mpdscribble.pid
 		add_daemon mpdscribble
@@ -28,7 +28,7 @@ stop)
 
 	if [ $? -gt 0 ]
 	then
-		stat_fail
+		stat_die
 	else
 		rm -f /var/run/mpdscribble.pid
 		rm_daemon mpdscribble
