@@ -19,5 +19,5 @@ package()
 	local _installdir="${pkgdir}/usr/share/vim/vimfiles/plugin"
 
 	install -d "${_installdir}"
-	install -m 644 "${srcdir}/calendar.vim" -t "${_installdir}"
+	install -m 644 "${srcdir}/calendar.vim" "${_installdir}"
 }
