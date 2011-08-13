@@ -22,8 +22,7 @@ package()
 
 	install -d "$_hunspelldir" "$_dictsdir" "$_docdir"
 
-	install -m 644 pt_BR.dic -t "$_hunspelldir"
-	install -m 644 pt_BR.aff -t "$_hunspelldir"
+	install -m 644 pt_BR.aff pt_BR.dic "$_hunspelldir"
 
 	pushd "$_dictsdir"
 	for file in $(ls "$_hunspelldir")
@@ -32,5 +31,5 @@ package()
 	done
 	popd
 
-	install -m 644 README_pt_BR.TXT -t "$_docdir"
+	install -m 644 README_pt_BR.TXT "$_docdir"
 }
