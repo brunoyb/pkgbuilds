@@ -22,7 +22,7 @@ package()
 
 	install -d "$_hyphendir" "$_dictsdir" "$_docdir"
 
-	install -m 644 hyph_pt_BR.dic -t "$_hyphendir"
+	install -m 644 hyph_pt_BR.dic "$_hyphendir"
 
 	pushd "$_dictsdir"
 	for file in $(ls "$_hyphendir")
@@ -31,5 +31,5 @@ package()
 	done
 	popd
 
-	install -m 644 README_hyph_pt_BR.TXT -t "$_docdir"
+	install -m 644 README_hyph_pt_BR.TXT "$_docdir"
 }
