@@ -19,5 +19,5 @@ package()
 	local _installdir="${pkgdir}/usr/share/vim/vimfiles/plugin"
 
 	install -d "${_installdir}"
-	install -m 644 "${srcdir}/renamer.vim" -t "${_installdir}"
+	install -m 644 "${srcdir}/renamer.vim" "${_installdir}"
 }
