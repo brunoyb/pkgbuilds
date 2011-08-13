@@ -51,7 +51,7 @@ package()
 	local _terminfodir="${pkgdir}/usr/share/terminfo"
 
 	install -d "${_appdir}" "${_terminfodir}"
-	install -m 644 "${srcdir}/${pkgname}.desktop" -t "${_appdir}"
+	install -m 644 "${srcdir}/${pkgname}.desktop" "${_appdir}"
 	install -D doc/rxvt-tabbed "${pkgdir}/usr/bin/urxvt-tabbed"
 
 	make TERMINFO="$_terminfodir" DESTDIR="$pkgdir" install
