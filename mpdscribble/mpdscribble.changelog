@@ -1,6 +1,7 @@
 2011-08-13 AkiraYB <brunoyb!yahoo,com,br>
 
 	* 0.22-2 :
+	Change license to GPL2
 	Remove -t option from install cmd
 	Use pkgname where applicable
 	Add mpdscribble.changelog
