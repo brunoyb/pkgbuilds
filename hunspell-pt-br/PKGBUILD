@@ -18,7 +18,7 @@ package()
 
 	local _hunspelldir="${pkgdir}/usr/share/hunspell"
 	local _dictsdir="${pkgdir}/usr/share/myspell/dicts"
-	local _docdir="${pkgdir}/usr/share/doc/hunspell-pt-br"
+	local _docdir="${pkgdir}/usr/share/doc/${pkgname}"
 
 	install -d "$_hunspelldir" "$_dictsdir" "$_docdir"
 
