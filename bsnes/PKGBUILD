@@ -1,0 +1,30 @@
+# Maintainer: AkiraYB <brunoyb!yahoo,com,br>
+
+pkgname=bsnes
+pkgver=0.081
+pkgrel=1
+pkgdesc='SNES emulator focused on accuracy (compatibility profile)'
+arch=('i686' 'x86_64')
+url='http://byuu.org/bsnes/'
+license=('GPL2')
+depends=('gtk2' 'libao' 'libgl' 'libpulse' 'libxv' 'openal' 'sdl')
+makedepends=('mesa')
+changelog="${pkgname}.changelog"
+source=("http://bsnes.googlecode.com/files/${pkgname}_v${pkgver#*.}-source.tar.bz2")
+sha256sums=('452cdd856552bf2083a08242a254c1d19237a4a308bed71d4c14f09904edabd9')
+
+_profile=('accuracy' 'compatibility' 'performance')
+
+build()
+{
+	cd "${srcdir}/${pkgname}_v${pkgver#*.}-source/${pkgname}"
+
+	make compiler=gcc phoenix=gtk platform=x profile="${_profile[1]}"
+}
+
+package()
+{
+	cd "${srcdir}/${pkgname}_v${pkgver#*.}-source/${pkgname}"
+
+	make DESTDIR="$pkgdir" prefix=/usr profile="${_profile[1]}" install
+}
