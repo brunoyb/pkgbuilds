@@ -1,0 +1,32 @@
+# Maintainer: AkiraYB <brunoyb!yahoo,com,br>
+
+pkgname=crosstool-ng
+pkgver=1.12.0
+pkgrel=1
+pkgdesc='A versatile (cross-)toolchain generator'
+arch=('i686' 'x86_64')
+url='http://crosstool-ng.org/'
+license=('GPL2')
+depends=('automake' 'bison' 'curl' 'cvs' 'flex' 'gawk' 'gcc'
+         'libtool' 'make' 'patch' 'python2' 'subversion')
+changelog="${pkgname}.changelog"
+source=("http://crosstool-ng.org/download/crosstool-ng/${pkgname}-${pkgver}.tar.bz2")
+sha256sums=('3d55ef4db25287c9f4fd119a16aa2f2a8122397d64a1070ff03adb585b82bea6')
+
+build()
+{
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
+	./configure --prefix=/usr
+
+	make
+}
+
+package()
+{
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
+	install -Dm 644 ct-ng.comp "${pkgdir}/etc/bash_completion.d/ct-ng"
+
+	make DESTDIR="$pkgdir" install
+}
