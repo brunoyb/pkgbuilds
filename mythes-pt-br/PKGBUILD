@@ -19,7 +19,7 @@ package()
 
 	local _mythesdir="${pkgdir}/usr/share/mythes"
 	local _dictsdir="${pkgdir}/usr/share/myspell/dicts"
-	local _docdir="${pkgdir}/usr/share/doc/mythes-pt-br"
+	local _docdir="${pkgdir}/usr/share/doc/${pkgname}"
 
 	install -d "$_mythesdir" "$_dictsdir" "$_docdir"
 
