@@ -1,0 +1,54 @@
+# Maintainer: AkiraYB <brunoyb!yahoo,com,br>
+
+pkgname=('coin-lemon' 'coin-lemon-doc')
+pkgver=1.2.2
+pkgrel=1
+arch=('i686' 'x86_64')
+url='http://lemon.cs.elte.hu/'
+license=('custom:Boost')
+makedepends=('glpk')
+source=("http://lemon.cs.elte.hu/pub/sources/${pkgname#*-}-${pkgver}.tar.gz")
+sha256sums=('2587816c3c1ce1033588c3c3e28353f99399444317eea14a80fa006a36cf42e2')
+
+build()
+{
+	cd "${srcdir}/${pkgbase#*-}-${pkgver}"
+
+	./configure --prefix=/usr
+
+	make
+	make check
+}
+
+package_coin-lemon()
+{
+	pkgdesc='A Library for Efficient Modeling and Optimization in Networks'
+	optdepends=('bash: to use lemon-0.x-to-1.x.sh'
+	            'glpk: for GLPK support')
+	options=('!libtool')
+	changelog="${pkgname}.changelog"
+
+	cd "${srcdir}/${pkgbase#*-}-${pkgver}"
+
+	local _licensesdir="${pkgdir}/usr/share/licenses/${pkgname}"
+
+	install -d "${_licensesdir}"
+	install -m 644 LICENSE "${_licensesdir}"
+
+	make DESTDIR="$pkgdir" PACKAGE_TARNAME="$pkgbase" install
+}
+
+package_coin-lemon-doc()
+{
+	pkgdesc='The COIN-OR::LEMON documentation'
+	changelog="${pkgname}.changelog"
+
+	cd "${srcdir}/${pkgbase#*-}-${pkgver}"
+
+	local _licensesdir="${pkgdir}/usr/share/licenses/${pkgname}"
+
+	install -d "${_licensesdir}"
+	install -m 644 LICENSE "${_licensesdir}"
+
+	make DESTDIR="$pkgdir" PACKAGE_TARNAME="$pkgbase" install-html
+}
