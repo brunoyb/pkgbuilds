@@ -39,6 +39,26 @@ bitlbee-bzr
 
 The Bazaar version of the bitlbee package.
 
+bsnes
+-----
+
+My personal PKGBUILD for bsnes. The compatibility profile is selected by
+default. Unlike the AUR one, this has pulseaudio support enabled and uses GTK
+instead of Qt. Besides, this one doesn't create a snespurify package.
+
+coin-lemon
+----------
+
+Updated and revised version of lemon-graphs from AUR. The documentation is
+packed in a split package. Also, I made some "improvements". I decided to make
+this one because I think coin-lemon is a better name than lemon-graphs.
+
+crosstool-ng
+-----------
+
+Updated and revised version of crosstool-ng from AUR. Mostly because the AUR
+one is out-of-date.
+
 emacs-pov-mode
 --------------
 
