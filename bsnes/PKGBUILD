@@ -1,7 +1,7 @@
 # Maintainer: AkiraYB <brunoyb!yahoo,com,br>
 
 pkgname=bsnes
-pkgver=0.081
+pkgver=0.082
 pkgrel=1
 pkgdesc='SNES emulator focused on accuracy (compatibility profile)'
 arch=('i686' 'x86_64')
@@ -11,7 +11,7 @@ depends=('gtk2' 'libao' 'libgl' 'libpulse' 'libxv' 'openal' 'sdl')
 makedepends=('mesa')
 changelog="${pkgname}.changelog"
 source=("http://bsnes.googlecode.com/files/${pkgname}_v${pkgver#*.}-source.tar.bz2")
-sha256sums=('452cdd856552bf2083a08242a254c1d19237a4a308bed71d4c14f09904edabd9')
+sha256sums=('d1e85a1073f73238f9dd947c1697af0b30a5d5c76a0df4bd1b00cdfae0da4240')
 
 _profile=('accuracy' 'compatibility' 'performance')
 
