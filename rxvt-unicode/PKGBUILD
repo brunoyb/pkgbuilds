@@ -21,7 +21,7 @@ build()
 {
 	cd "${srcdir}/${pkgname}-${pkgver}"
 
-	patch -p1 -i "${srcdir}/${pkgname}.patch"
+	patch -Np1 -i "${srcdir}/${pkgname}.patch"
 
 	sed -e 's/"rxvt"/"urxvt"/' -i doc/rxvt-tabbed
 
