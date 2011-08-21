@@ -163,13 +163,6 @@ in the link below, just replace the font-width-fix.patch with this one:
 
 http://pastebin.com/ykZW4TED
 
-vim-calendar and vim-renamer
-----------------------------
-
-I use these packages when the AUR ones are out-of-date. They're basically the
-same, just the license is changed to "unknown" which I think it's more
-"appropriated".
-
 FINALLY
 =======
 
