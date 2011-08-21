@@ -1,6 +1,0 @@
-2011-08-13 AkiraYB <brunoyb!yahoo,com,br>
-
-	* 2.5-1 :
-	Remove -t option from install cmd
-	Use pkgname where applicable
-	Add vim-calendar.changelog
