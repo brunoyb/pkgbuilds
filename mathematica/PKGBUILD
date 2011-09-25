@@ -42,7 +42,7 @@ package()
 		if [ -L "$_file" ]
 		then
 			local _bin=$(readlink "$_file")
-			ln -fs "/opt/${pkgname}/${_bin##*Mathematica/}" $_file
+			ln -fs "/opt/${pkgname}/${_bin##*mathematica/}" $_file
 		fi
 	done
 
