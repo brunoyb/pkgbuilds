@@ -1,0 +1,54 @@
+# Maintainer: AkiraYB <brunoyb!yahoo,com,br>
+
+pkgname=mathematica
+_pkgname=Mathematica
+pkgver=8.0.1
+pkgrel=2
+pkgdesc='Technical Computing Software'
+arch=('i686' 'x86_64')
+url='http://www.wolfram.com/mathematica/'
+license=('custom')
+options=('!strip')
+changelog="${pkgname}.changelog"
+source=("${_pkgname}_${pkgver}_LINUX.sh")
+sha256sums=('4fee5540dd3bf378d02245f6fe7f5af6e25eea7a6d3227f9323c6df27f99dc87')
+
+# comment this if you want to keep (compress) the package (slower packaging)
+PKGEXT='.pkg.tar'
+
+build()
+{
+	cd "${srcdir}"
+
+	yes n | sh "${_pkgname}_${pkgver}_LINUX.sh" \
+		--target "${_pkgname}-${pkgver}" --confirm --keep --nox11 \
+		-- -silent -dummy # -dummy, in case --confirm doesn't work
+
+	sed -e "/Solaris-SPARC/ s/tr '\.'/tr '\.-'/" \
+	    -i "${_pkgname}-${pkgver}/Unix/Installer/MathInstaller"
+}
+
+package()
+{
+	cd "${srcdir}/${_pkgname}-${pkgver}"
+
+	sh Unix/Installer/MathInstaller \
+		-targetdir="${pkgdir}/opt/${pkgname}" \
+		-execdir="${pkgdir}/usr/bin" \
+		-auto
+
+	for _file in "${pkgdir}/usr/bin/"*
+	do
+		if [ -L "$_file" ]
+		then
+			local _bin=$(readlink "$_file")
+			ln -fs "/opt/${pkgname}/${_bin##*Mathematica/}" $_file
+		fi
+	done
+
+	local _licensesdir="${pkgdir}/usr/share/licenses/${pkgname}"
+	local _licenselink="http://www.wolfram.com/legal/agreements/wolfram-mathematica.html"
+
+	install -d "${_licensesdir}"
+	echo "${_licenselink}" > "${_licensesdir}/LICENSE"
+}
