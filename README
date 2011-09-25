@@ -80,6 +80,19 @@ hunspell-pt-br, hyphen-pt-br and mythes-pt-br
 There wasn't a mythes-pt-br package in AUR so I made one! And to keep things
 standard, I ended up creating packages for hunspell-pt-br and hyphe-pt-br too.
 
+mathematica
+-----------
+
+A package for the software Mathematica from Wolfram. This is intended to be
+used with the installer of the trial version that you can pickup at
+http://www.wolfram.com/mathematica/trial.
+
+This package already exists in AUR, but I decided to do some refactoring,
+creating a LICENSE file with the link to the actual license (perhaps we can
+make a text version of it later) and "fixing" a installation failure that
+occurs near the end of the installation, although it doesn't seems to affect
+anything. Also, cosmetic changes as usual. :)
+
 minbif
 ------
 
