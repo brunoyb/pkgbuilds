@@ -2,7 +2,7 @@
 
 pkgname=('coin-lemon' 'coin-lemon-doc')
 pkgver=1.2.2
-pkgrel=2
+pkgrel=3
 arch=('i686' 'x86_64')
 url='http://lemon.cs.elte.hu/'
 license=('custom:Boost')
@@ -30,10 +30,7 @@ package_coin-lemon()
 
 	cd "${srcdir}/${pkgbase#*-}-${pkgver}"
 
-	local _licensesdir="${pkgdir}/usr/share/licenses/${pkgname}"
-
-	install -d "$_licensesdir"
-	install -m 644 LICENSE "$_licensesdir"
+	install -Dm 644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}"
 
 	make DESTDIR="$pkgdir" PACKAGE_TARNAME="$pkgbase" install
 }
@@ -45,10 +42,7 @@ package_coin-lemon-doc()
 
 	cd "${srcdir}/${pkgbase#*-}-${pkgver}"
 
-	local _licensesdir="${pkgdir}/usr/share/licenses/${pkgname}"
-
-	install -d "$_licensesdir"
-	install -m 644 LICENSE "$_licensesdir"
+	install -Dm 644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}"
 
 	make DESTDIR="$pkgdir" PACKAGE_TARNAME="$pkgbase" install-html
 }
