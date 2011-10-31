@@ -1,30 +1,65 @@
 # Maintainer: AkiraYB <brunoyb!yahoo,com,br>
 
 pkgname=bsnes
-pkgver=0.082
+pkgver=083
 pkgrel=1
 pkgdesc='SNES emulator focused on accuracy (compatibility profile)'
 arch=('i686' 'x86_64')
 url='http://byuu.org/bsnes/'
-license=('GPL2')
+license=('GPL3')
 depends=('gtk2' 'libao' 'libgl' 'libpulse' 'libxv' 'openal' 'sdl')
 makedepends=('mesa')
 changelog="${pkgname}.changelog"
-source=("http://bsnes.googlecode.com/files/${pkgname}_v${pkgver#*.}-source.tar.bz2")
-sha256sums=('d1e85a1073f73238f9dd947c1697af0b30a5d5c76a0df4bd1b00cdfae0da4240')
+source=("http://bsnes.googlecode.com/files/${pkgname}_v${pkgver}-source.tar.bz2"
+        "${pkgname}.patch")
+sha256sums=('6f9515713c6c415abb4c358f7f01a35906a2d687f7f8574c2308da8265d09255'
+            '51cdd04d394e3aa5d7c60be3114a3be0ee67dc060daa3124c7811fe45118bab8')
 
 _profile=('accuracy' 'compatibility' 'performance')
 
 build()
 {
-	cd "${srcdir}/${pkgname}_v${pkgver#*.}-source/${pkgname}"
+	cd "${srcdir}/${pkgname}_v${pkgver}-source"
 
-	make compiler=gcc phoenix=gtk platform=x profile="${_profile[1]}"
+	pushd snespurify
+	sed -e 's/g++-4.5/g++/' -i cc-gtk.sh
+	./cc-gtk.sh
+	popd
+
+	pushd snesfilter
+	make compiler=gcc platform=x
+	popd
+
+	pushd bsnes
+	patch -Np0 -i "${srcdir}/${pkgname}.patch"
+	sed -e '/~\/.config/ d' -i ui/Makefile
+	make compiler=gcc platform=x phoenix=gtk profile="${_profile[1]}"
+	popd
 }
 
 package()
 {
-	cd "${srcdir}/${pkgname}_v${pkgver#*.}-source/${pkgname}"
+	cd "${srcdir}/${pkgname}_v${pkgver}-source"
 
-	make DESTDIR="$pkgdir" prefix=/usr profile="${_profile[1]}" install
+	local _bindir="${pkgdir}/usr/bin"
+	local _filtersdir="${pkgdir}/usr/share/bsnes/filters"
+	local _shadersdir="${pkgdir}/usr/share/bsnes/shaders"
+
+	install -d "$_bindir" "$_filtersdir" "$_shadersdir"
+
+	pushd snesshader
+	install -m 644 *.shader "$_shadersdir"
+	popd
+
+	pushd snespurify
+	install -m 755 snespurify-gtk "$_bindir"
+	popd
+
+	pushd snesfilter
+	install -m 644 out/*.filter "$_filtersdir"
+	popd
+
+	pushd bsnes
+	make DESTDIR="${pkgdir}" prefix=/usr profile="${_profile[1]}" install
+	popd
 }
