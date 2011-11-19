@@ -1,14 +1,14 @@
 # Maintainer: AkiraYB <brunoyb!yahoo,com,br>
 
 pkgname=('coin-lemon' 'coin-lemon-doc')
-pkgver=1.2.2
-pkgrel=3
+pkgver=1.2.3
+pkgrel=1
 arch=('i686' 'x86_64')
 url='http://lemon.cs.elte.hu/'
 license=('custom:Boost')
 makedepends=('glpk')
 source=("http://lemon.cs.elte.hu/pub/sources/${pkgname#*-}-${pkgver}.tar.gz")
-sha256sums=('2587816c3c1ce1033588c3c3e28353f99399444317eea14a80fa006a36cf42e2')
+sha256sums=('8127df2bdd1c2a4d06db6ff247ca413fa2ef5aa9e34f6877fce6b65c2beb3b37')
 
 build()
 {
