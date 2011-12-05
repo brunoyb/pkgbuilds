@@ -1,8 +1,8 @@
 # Maintainer: AkiraYB <brunoyb!yahoo,com,br>
 
 pkgname=bitlbee
-pkgver=3.0.3
-pkgrel=4
+pkgver=3.0.4
+pkgrel=1
 pkgdesc='Brings instant messaging (XMPP, MSN, Yahoo!, AIM, ICQ, Twitter) to IRC'
 arch=('i686' 'x86_64')
 url='http://www.bitlbee.org/'
@@ -17,7 +17,7 @@ changelog="${pkgname}.changelog"
 source=("http://get.bitlbee.org/src/${pkgname}-${pkgver}.tar.gz"
         "${pkgname}.rcd"
         "${pkgname}.xinetd")
-sha256sums=('82ca758937ce7bedaab49edec75f4ad45a3102ac3beaa932b64c34fbb1e3af25'
+sha256sums=('64788e7ef7a175dcda915fad3a8e41990ce4bee3ccdbb4bfb0a2d5a78729ccdb'
             'd2540ad33485ab609c54da7aea9d2d9bc3e67f43ce17ec0e7cbe13ba0ac63a33'
             '6dde38c9d81628e44ad6af82db054405fa1ee7141bab006915b6d42a83c98e99')
 
