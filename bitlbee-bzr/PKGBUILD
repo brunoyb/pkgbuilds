@@ -8,9 +8,12 @@ pkgdesc='Brings instant messaging (XMPP, MSN, Yahoo!, AIM, ICQ, Twitter) to IRC'
 arch=('i686' 'x86_64')
 url='http://www.bitlbee.org/'
 license=('GPL2')
-depends=('glib2' 'gnutls' 'libotr')
-makedepends=('bzr' 'docbook-xsl' 'links' 'xmlto') # xmlto needs lynx|w3m|links
-optdepends=('xinetd: to run bitlbee through xinetd')
+depends=('glib2' 'gnutls')
+makedepends=('asciidoc' 'libotr'
+             'bzr' 'docbook-xsl' 'links' 'xmlto') # xmlto needs lynx|w3m|links
+optdepends=('libotr: for OTR encryption support'
+            'skype4py: to use skyped'
+            'xinetd: to run bitlbee through xinetd')
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 backup=('etc/bitlbee/bitlbee.conf'
@@ -53,7 +56,8 @@ build()
 	            --ipcsocket=/var/run/bitlbee/bitlbee.sock \
 	            --systemdsystemunitdir=/lib/systemd/system \
 	            --ssl=gnutls \
-	            --otr=1
+	            --otr=plugin \
+	            --skype=plugin
 
 	make
 }
