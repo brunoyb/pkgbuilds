@@ -13,16 +13,16 @@ provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 changelog="${_pkgname}.changelog"
 source=("http://downloads.sourceforge.net/${_pkgname}/${_pkgname}-${pkgver//.}-src.tgz"
-        "${_pkgname}.patch")
+        "http://alt.org/nethack/nh343-nao.diff")
 sha256sums=('bb39c3d2a9ee2df4a0c8fdde708fbc63740853a7608d2f4c560b488124866fe4'
-            'f06b498626767c5efaf4be03ce766454e623941c578bf18af7498821de3bcab1')
+            '16d28f9501e1bbec186c974c94a2e077571639747acf11cd465c538cc8cb3472')
 
 build()
 {
 	cd "${srcdir}/${_pkgname}-${pkgver}"
 
-	# http://alt.org/nethack/nh343-nao.diff
-	patch -Np1 -i "${srcdir}/${_pkgname}.patch"
+	# http://alt.org/nethack/naonh.php
+	patch -Np1 -i "${srcdir}/nh343-nao.diff"
 
 	sh sys/unix/setup.sh
 
