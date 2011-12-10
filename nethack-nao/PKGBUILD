@@ -11,6 +11,10 @@ license=('custom')
 depends=('bash')
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
+backup=('var/games/nethack/logfile'
+        'var/games/nethack/perm'
+        'var/games/nethack/record'
+        'var/games/nethack/xlogfile')
 changelog="${_pkgname}.changelog"
 source=("http://downloads.sourceforge.net/${_pkgname}/${_pkgname}-${pkgver//.}-src.tgz"
         "http://alt.org/nethack/nh343-nao.diff")
