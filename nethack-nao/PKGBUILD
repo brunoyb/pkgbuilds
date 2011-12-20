@@ -2,7 +2,8 @@
 
 pkgname=nethack-nao
 _pkgname=nethack
-pkgver=3.4.3
+pkgver=3.4.3_20111211
+_pkgver=3.4.3
 pkgrel=1
 pkgdesc='A single player dungeon exploration game (with patches from NAO)'
 arch=('i686' 'x86_64')
@@ -16,14 +17,14 @@ backup=('var/games/nethack/logfile'
         'var/games/nethack/record'
         'var/games/nethack/xlogfile')
 changelog="${_pkgname}.changelog"
-source=("http://downloads.sourceforge.net/${_pkgname}/${_pkgname}-${pkgver//.}-src.tgz"
+source=("http://downloads.sourceforge.net/${_pkgname}/${_pkgname}-${_pkgver//.}-src.tgz"
         "http://alt.org/nethack/nh343-nao.diff")
 sha256sums=('bb39c3d2a9ee2df4a0c8fdde708fbc63740853a7608d2f4c560b488124866fe4'
-            '16d28f9501e1bbec186c974c94a2e077571639747acf11cd465c538cc8cb3472')
+            '32d22f3cd46a77457fa28aa3969feebea23f714f142fe0880ccf0222ad39fd56')
 
 build()
 {
-	cd "${srcdir}/${_pkgname}-${pkgver}"
+	cd "${srcdir}/${_pkgname}-${_pkgver}"
 
 	# http://alt.org/nethack/naonh.php
 	patch -Np1 -i "${srcdir}/nh343-nao.diff"
@@ -52,7 +53,7 @@ build()
 
 package()
 {
-	cd "${srcdir}/${_pkgname}-${pkgver}"
+	cd "${srcdir}/${_pkgname}-${_pkgver}"
 
 	local _gamesdir="${pkgdir}/var/games/nethack"
 	local _docdir="${pkgdir}/usr/share/doc/${_pkgname}"
