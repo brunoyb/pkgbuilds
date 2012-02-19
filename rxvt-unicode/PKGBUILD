@@ -1,19 +1,19 @@
 # Maintainer: AkiraYB <brunoyb!yahoo,com,br>
 
 pkgname=rxvt-unicode
-pkgver=9.14
+pkgver=9.15
 pkgrel=1
 pkgdesc='An unicode enabled rxvt-clone terminal emulator (urxvt)'
 arch=('i686' 'x86_64')
 url='http://software.schmorp.de/pkg/rxvt-unicode.html'
 license=('GPL2')
-depends=('gdk-pixbuf2' 'libxft' 'perl')
+depends=('gdk-pixbuf2' 'libxft' 'perl' 'startup-notification')
 optdepends=('gtk2-perl: to use urxvt-tabbed')
 changelog="${pkgname}.changelog"
 source=("http://dist.schmorp.de/rxvt-unicode/${pkgname}-${pkgver}.tar.bz2"
         "${pkgname}.desktop"
         "${pkgname}.patch")
-sha256sums=('29928a33be6b3fb0edd126df2c3d35e1900f8268b546ce54430780c550fa1d52'
+sha256sums=('ec1aa2932da844979ed8140bd92223defb12042aa5e877e05ac31139ca81f2b1'
             '61b14cee1bd0a7010112e8961ef01cd19404a131555315341b46b94c41f1fad4'
             '85812e2eb5b78bd9d94d4ca9c97c9aaa471b95816e46b3c4ad33e913896b34c1')
 
@@ -35,6 +35,7 @@ build()
 	            --enable-pixbuf \
 	            --enable-selectionscrolling \
 	            --enable-smart-resize \
+	            --enable-startup-notification \
 	            --enable-transparency \
 	            --enable-utmp \
 	            --enable-wtmp \
