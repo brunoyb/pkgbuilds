@@ -1,8 +1,8 @@
 # Maintainer: AkiraYB <brunoyb!yahoo,com,br>
 
 pkgname=bsnes
-pkgver=084
-pkgrel=2
+pkgver=086
+pkgrel=1
 pkgdesc='SNES emulator focused on accuracy (compatibility profile)'
 arch=('i686' 'x86_64')
 url='http://byuu.org/bsnes/'
@@ -12,14 +12,14 @@ makedepends=('mesa')
 changelog="${pkgname}.changelog"
 source=("http://bsnes.googlecode.com/files/${pkgname}_v${pkgver}-source.tar.bz2"
         "${pkgname}.patch")
-sha256sums=('268f3162ba1aeabbeba8cd12ebefd07ee8669204a226628ec5a6b3773414a2d9'
-            '51cdd04d394e3aa5d7c60be3114a3be0ee67dc060daa3124c7811fe45118bab8')
+sha256sums=('8f8c77f79e284e65eadbcf235332ac7fd02b153277a3b56f2b4f6cf1d1bb7998'
+            'd1de334b892e362f4b7a9249983d22aa88f1a1ce0c1acd4e2358b731dd30ffa8')
 
 _profile=('accuracy' 'compatibility' 'performance')
 
 build()
 {
-	cd "${srcdir}"
+	cd "${srcdir}/${pkgname}_v${pkgver}-source"
 
 	pushd snespurify
 	sed -e 's/g++-4.5/g++/' -i cc-gtk.sh
@@ -39,7 +39,7 @@ build()
 
 package()
 {
-	cd "${srcdir}"
+	cd "${srcdir}/${pkgname}_v${pkgver}-source"
 
 	local _bindir="${pkgdir}/usr/bin"
 	local _filtersdir="${pkgdir}/usr/share/bsnes/filters"
