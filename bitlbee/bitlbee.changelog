@@ -1,3 +1,9 @@
+2012-02-20 AkiraYB <brunoyb!yahoo,com,br>
+
+	* 3.0.5-2 :
+	Fix FS#28534
+	Fix gnutls incompatibility
+
 2012-02-19 AkiraYB <brunoyb!yahoo,com,br>
 
 	* 3.0.5-1 :

@@ -2,12 +2,12 @@
 
 pkgname=bitlbee
 pkgver=3.0.5
-pkgrel=1
+pkgrel=2
 pkgdesc='Brings instant messaging (XMPP, MSN, Yahoo!, AIM, ICQ, Twitter) to IRC'
 arch=('i686' 'x86_64')
 url='http://www.bitlbee.org/'
 license=('GPL2')
-depends=('glib2' 'gnutls')
+depends=('glib2' 'openssl')
 makedepends=('asciidoc' 'libotr')
 optdepends=('libotr: for OTR encryption support'
             'skype4py: to use skyped'
@@ -18,9 +18,11 @@ backup=('etc/bitlbee/bitlbee.conf'
 install="${pkgname}.install"
 changelog="${pkgname}.changelog"
 source=("http://get.bitlbee.org/src/${pkgname}-${pkgver}.tar.gz"
+        "${pkgname}.patch"
         "${pkgname}.rcd"
         "${pkgname}.xinetd")
 sha256sums=('a2b18ae0355650b7ec326b8ea7082eb06bb8f8816ad3b4985fe97f729ce84e59'
+            '2629b95b1dd2032412d0b840fc988c3d059317f1cc0e541bba8f35a61a518c33'
             'd2540ad33485ab609c54da7aea9d2d9bc3e67f43ce17ec0e7cbe13ba0ac63a33'
             '6dde38c9d81628e44ad6af82db054405fa1ee7141bab006915b6d42a83c98e99')
 
@@ -28,12 +30,14 @@ build()
 {
 	cd "${srcdir}/${pkgname}-${pkgver}"
 
+	patch -Np1 -i "${srcdir}/${pkgname}.patch"
+
 	./configure --prefix=/usr \
 	            --etcdir=/etc/bitlbee \
 	            --pidfile=/var/run/bitlbee/bitlbee.pid \
 	            --ipcsocket=/var/run/bitlbee/bitlbee.sock \
 	            --systemdsystemunitdir=/lib/systemd/system \
-	            --ssl=gnutls \
+	            --ssl=openssl \
 	            --otr=plugin \
 	            --skype=plugin
 
