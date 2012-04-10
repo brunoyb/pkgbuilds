@@ -52,14 +52,14 @@ package()
 {
 	cd "${srcdir}/${pkgname}-${pkgver}"
 
-	local _appdir="${pkgdir}/usr/share/applications"
+	local _appsdir="${pkgdir}/usr/share/applications"
 	local _terminfodir="${pkgdir}/usr/share/terminfo"
 
-	install -d "${_appdir}" "${_terminfodir}"
+	install -d "$_appsdir" "$_terminfodir"
 
 	for _file in "${srcdir}"/*.desktop
 	do
-		install -m 644 "${_file}" "${_appdir}/${_file##*rxvt-unicode-}"
+		install -m 644 "${_file}" "${_appsdir}/${_file##*rxvt-unicode-}"
 	done
 
 	install -D doc/rxvt-tabbed "${pkgdir}/usr/bin/urxvt-tabbed"
