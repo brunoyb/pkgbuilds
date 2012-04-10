@@ -25,9 +25,9 @@ package()
 	install -m 644 pt_BR.aff pt_BR.dic "$_hunspelldir"
 
 	pushd "$_dictsdir"
-	for file in $(ls "$_hunspelldir")
+	for _file in $(ls "$_hunspelldir")
 	do
-		ln -sv "/usr/share/hunspell/${file}" .
+		ln -sv "/usr/share/hunspell/${_file}" .
 	done
 	popd
 
