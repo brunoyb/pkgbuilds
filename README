@@ -152,8 +152,8 @@ I began this PKGBUILD because I couldn't find one with all the features I like
 in nethack. Usually I play this game through telnet on nethack.alt.org (NAO),
 but sometimes it can be a little "laggy". This is when a local nethack can come
 in handy. So I decided to make this with the very same patches applied in the
-NAO public server (or at least very close to what's there). Besides, I tried to
-make the package like the official one in the community repository.
+NAO public server. Besides, I tried to make the package like the official one
+in the community repository with, hopefully, some improvements.
 
 rxvt-unicode
 ------------
