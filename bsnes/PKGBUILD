@@ -1,7 +1,7 @@
 # Maintainer: AkiraYB <brunoyb!yahoo,com,br>
 
 pkgname=bsnes
-pkgver=086
+pkgver=087
 pkgrel=1
 pkgdesc='SNES emulator focused on accuracy (compatibility profile)'
 arch=('i686' 'x86_64')
@@ -12,8 +12,8 @@ makedepends=('mesa')
 changelog="${pkgname}.changelog"
 source=("http://bsnes.googlecode.com/files/${pkgname}_v${pkgver}-source.tar.bz2"
         "${pkgname}.patch")
-sha256sums=('8f8c77f79e284e65eadbcf235332ac7fd02b153277a3b56f2b4f6cf1d1bb7998'
-            'd1de334b892e362f4b7a9249983d22aa88f1a1ce0c1acd4e2358b731dd30ffa8')
+sha256sums=('a8ef86ad318396c56cbbb2723487a63afd003ec54737baeb027a340b24123e60'
+            '8f835e4cded86bfc4b394d42559350f8ebd7440e125492a4bac90b5d4b565ebf')
 
 _profile=('accuracy' 'compatibility' 'performance')
 
@@ -32,7 +32,7 @@ build()
 
 	pushd bsnes
 	patch -Np0 -i "${srcdir}/${pkgname}.patch"
-	sed -e '/~\/.config/ d' -i ui/Makefile
+	sed -e '/~\/.config/ d' -i target-ui/Makefile
 	make compiler=gcc platform=x phoenix=gtk profile="${_profile[1]}"
 	popd
 }
