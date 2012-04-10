@@ -25,9 +25,9 @@ package()
 	install -m 644 hyph_pt_BR.dic "$_hyphendir"
 
 	pushd "$_dictsdir"
-	for file in $(ls "$_hyphendir")
+	for _file in $(ls "$_hyphendir")
 	do
-		ln -sv "/usr/share/hyphen/${file}" .
+		ln -sv "/usr/share/hyphen/${_file}" .
 	done
 	popd
 
