@@ -2,7 +2,7 @@
 
 pkgname=rxvt-unicode
 pkgver=9.15
-pkgrel=1
+pkgrel=2
 pkgdesc='An unicode enabled rxvt-clone terminal emulator (urxvt)'
 arch=('i686' 'x86_64')
 url='http://software.schmorp.de/pkg/rxvt-unicode.html'
@@ -11,10 +11,14 @@ depends=('gdk-pixbuf2' 'libxft' 'perl' 'startup-notification')
 optdepends=('gtk2-perl: to use urxvt-tabbed')
 changelog="${pkgname}.changelog"
 source=("http://dist.schmorp.de/rxvt-unicode/${pkgname}-${pkgver}.tar.bz2"
-        "${pkgname}.desktop"
+        "${pkgname}-urxvt.desktop"
+        "${pkgname}-urxvtc.desktop"
+        "${pkgname}-urxvt-tabbed.desktop"
         "${pkgname}.patch")
 sha256sums=('ec1aa2932da844979ed8140bd92223defb12042aa5e877e05ac31139ca81f2b1'
-            '61b14cee1bd0a7010112e8961ef01cd19404a131555315341b46b94c41f1fad4'
+            '13b3ce60ef607b5c94c9e0e2aa5236781e7a4c1c69da2c0ea9ef30c52728ac69'
+            '9c1964776a1f7fe0ccfff937355e7dedca812c328e38970598bf2f62633ee121'
+            '1841d774887c4402f9fd431abc54776a914ac7f9d19cb1903035fb2afd6a79c4'
             '85812e2eb5b78bd9d94d4ca9c97c9aaa471b95816e46b3c4ad33e913896b34c1')
 
 build()
@@ -52,7 +56,12 @@ package()
 	local _terminfodir="${pkgdir}/usr/share/terminfo"
 
 	install -d "${_appdir}" "${_terminfodir}"
-	install -m 644 "${srcdir}/${pkgname}.desktop" "${_appdir}"
+
+	for _file in "${srcdir}"/*.desktop
+	do
+		install -m 644 "${_file}" "${_appdir}/${_file##*rxvt-unicode-}"
+	done
+
 	install -D doc/rxvt-tabbed "${pkgdir}/usr/bin/urxvt-tabbed"
 
 	make TERMINFO="$_terminfodir" DESTDIR="$pkgdir" install
