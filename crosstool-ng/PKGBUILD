@@ -1,17 +1,17 @@
 # Maintainer: AkiraYB <brunoyb!yahoo,com,br>
 
 pkgname=crosstool-ng
-pkgver=1.14.1
+pkgver=1.15.2
 pkgrel=1
 pkgdesc='A versatile (cross-)toolchain generator'
 arch=('i686' 'x86_64')
 url='http://crosstool-ng.org/'
 license=('GPL2')
-depends=('automake' 'bison' 'curl' 'cvs' 'flex' 'gawk'
-         'gcc' 'libtool' 'make' 'patch' 'python2' 'subversion')
+depends=('automake' 'bison' 'curl' 'cvs' 'flex' 'gawk' 'gcc'
+         'gperf' 'libtool' 'make' 'patch' 'python2' 'subversion')
 changelog="${pkgname}.changelog"
 source=("http://crosstool-ng.org/download/crosstool-ng/${pkgname}-${pkgver}.tar.bz2")
-sha256sums=('946f61fe8c8c51df497f0643a8cb9aec84e5cfec63b1131fc5699fede015006e')
+sha256sums=('58efdc97cc9e51c743d3f83c049ee1c1ca1f4cf8160ca7fc28d1480760ec5b4e')
 
 build()
 {
