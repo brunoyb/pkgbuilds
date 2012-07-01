@@ -1,16 +1,16 @@
 # Maintainer: AkiraYB <brunoyb!yahoo,com,br>
 
 pkgname=hyphen-pt-br
-pkgver=2.0.9
+pkgver=2.1.1
 pkgrel=1
 pkgdesc='Portuguese (Brazil) hyphenation rules'
 arch=('any')
 url='http://www.broffice.org/verortografico/'
-license=('LGPL2.1')
+license=('LGPL3')
 optdepends=('hyphen: offers hyphenation library functions')
 changelog="${pkgname}.changelog"
-source=('http://www.broffice.org/files/Vero_pt_BR_V209AOC.oxt')
-sha256sums=('45705ee542bb71a115cf9c80ce035a1bc3bcf9483c88d5e3a993d59a1b79ff0a')
+source=('http://www.broffice.org/files/Vero_pt_BR_V211AOC.oxt')
+sha256sums=('51e2f133dc6bb90bac39bf4f4c83bbedc16c16ddaec3215c7e269155c1a15f90')
 
 package()
 {
@@ -24,12 +24,10 @@ package()
 
 	install -m 644 hyph_pt_BR.dic "$_hyphendir"
 
-	pushd "$_dictsdir"
-	for _file in $(ls "$_hyphendir")
+	for _file in "$_hyphendir"/*
 	do
-		ln -sv "/usr/share/hyphen/${_file}" .
+		ln -sv "${_file#${pkgdir}}" "${_dictsdir}"
 	done
-	popd
 
 	install -m 644 README_hyph_pt_BR.TXT "$_docdir"
 }
