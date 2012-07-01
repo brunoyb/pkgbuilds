@@ -1,7 +1,7 @@
 # Maintainer: AkiraYB <brunoyb!yahoo,com,br>
 
 pkgname=bsnes
-pkgver=087
+pkgver=088
 pkgrel=1
 pkgdesc='SNES emulator focused on accuracy (compatibility profile)'
 arch=('i686' 'x86_64')
@@ -10,10 +10,10 @@ license=('GPL3')
 depends=('gtk2' 'libao' 'libgl' 'libpulse' 'libxv' 'openal' 'sdl')
 makedepends=('mesa')
 changelog="${pkgname}.changelog"
-source=("http://bsnes.googlecode.com/files/${pkgname}_v${pkgver}-source.tar.bz2"
-        "${pkgname}.patch")
-sha256sums=('a8ef86ad318396c56cbbb2723487a63afd003ec54737baeb027a340b24123e60'
-            '8f835e4cded86bfc4b394d42559350f8ebd7440e125492a4bac90b5d4b565ebf')
+source=("http://bsnes.googlecode.com/files/${pkgname}_v${pkgver}-source.tar.xz"
+        "${pkgname}.sh")
+sha256sums=('edf6decf96c6b83c58f6b167951bb84b57c0ca4f3e5e8cad7af6d3485540273b'
+            'c42efe50dc234ae46a9cbd36711cb9d42d7a5b9c03747a7361b582a327412b5b')
 
 _profile=('accuracy' 'compatibility' 'performance')
 
@@ -21,20 +21,17 @@ build()
 {
 	cd "${srcdir}/${pkgname}_v${pkgver}-source"
 
-	pushd snespurify
-	sed -e 's/g++-4.5/g++/' -i cc-gtk.sh
-	./cc-gtk.sh
-	popd
+	sed -e 's|cp \(.*\) /usr/local|install -D \1 $(DESTDIR)/usr|' \
+	    -e 's|\(`pkg-config --libs gtk+-2.0`\)|-lX11 \1|' \
+	    -e 's|sudo ||' -i purify/Makefile
 
-	pushd snesfilter
-	make compiler=gcc platform=x
-	popd
+	sed -e 's|sudo ||' \
+	    -e 's|/bin|/lib/bsnes|' \
+	    -e '/~\/.config/ d' -i bsnes/target-ui/Makefile
 
-	pushd bsnes
-	patch -Np0 -i "${srcdir}/${pkgname}.patch"
-	sed -e '/~\/.config/ d' -i target-ui/Makefile
-	make compiler=gcc platform=x phoenix=gtk profile="${_profile[1]}"
-	popd
+	make compiler=gcc -C snesfilter
+	make compiler=gcc -C purify
+	make compiler=gcc profile="${_profile[1]}" -C bsnes
 }
 
 package()
@@ -42,24 +39,28 @@ package()
 	cd "${srcdir}/${pkgname}_v${pkgver}-source"
 
 	local _bindir="${pkgdir}/usr/bin"
-	local _filtersdir="${pkgdir}/usr/share/bsnes/filters"
-	local _shadersdir="${pkgdir}/usr/share/bsnes/shaders"
+	local _libdir="${pkgdir}/usr/lib"
+	local _sharedir="${pkgdir}/usr/share"
 
-	install -d "$_bindir" "$_filtersdir" "$_shadersdir"
+	local _filtersdir="${_libdir}/bsnes/filters"
+	local _shadersdir="${_sharedir}/bsnes/shaders"
 
-	pushd snesshader
-	install -m 644 *.shader "$_shadersdir"
-	popd
+	install -d "$_filtersdir" "$_shadersdir"
 
-	pushd snespurify
-	install -m 755 snespurify-gtk "$_bindir"
-	popd
+	install -m 644 snesfilter/out/*.filter "$_filtersdir"
+	install -m 644 snesshader/*.shader "$_shadersdir"
 
-	pushd snesfilter
-	install -m 644 out/*.filter "$_filtersdir"
-	popd
+	for _dir in bsnes/profile/*
+	do
+		for _file in "$_dir"/*
+		do
+			install -Dm 644 "${_file}" "${_sharedir}/${_file}"
+		done
+	done
 
-	pushd bsnes
-	make DESTDIR="${pkgdir}" prefix=/usr profile="${_profile[1]}" install
-	popd
+	install -Dm 644 bsnes/data/cheats.xml "${_sharedir}/bsnes/cheats.xml"
+	install -Dm 755 "${srcdir}/bsnes.sh" "${_bindir}/bsnes"
+
+	make DESTDIR="$pkgdir" -C purify install
+	make DESTDIR="$pkgdir" prefix=/usr -C bsnes install
 }
