@@ -1,3 +1,9 @@
+2012-07-06 AkiraYB <brunoyb!yahoo,com,br>
+
+	* 912-1 :
+	Move /var/run to /run
+	Add systemd tmpfiles.d fragment
+
 2012-04-10 AkiraYB <brunoyb!yahoo,com,br>
 
 	* 903-1 :

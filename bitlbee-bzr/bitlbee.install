@@ -12,8 +12,7 @@ post_install()
 		        -s /bin/false -c bitlbee bitlbee
 	fi
 
-	chown -R bitlbee:bitlbee /var/lib/bitlbee
-	chmod 770 /var/lib/bitlbee
+	systemd-tmpfiles --create bitlbee.conf
 }
 
 post_upgrade()

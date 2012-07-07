@@ -2,7 +2,7 @@
 
 pkgname=bitlbee-bzr
 _pkgname=bitlbee
-pkgver=903
+pkgver=912
 pkgrel=1
 pkgdesc='Brings instant messaging (XMPP, MSN, Yahoo!, AIM, ICQ, Twitter) to IRC'
 arch=('i686' 'x86_64')
@@ -22,9 +22,11 @@ backup=('etc/bitlbee/bitlbee.conf'
 install="${_pkgname}.install"
 changelog="${_pkgname}.changelog"
 source=("${_pkgname}.rcd"
-        "${_pkgname}.xinetd")
-sha256sums=('d2540ad33485ab609c54da7aea9d2d9bc3e67f43ce17ec0e7cbe13ba0ac63a33'
-            '6dde38c9d81628e44ad6af82db054405fa1ee7141bab006915b6d42a83c98e99')
+        "${_pkgname}.xinetd"
+        "${_pkgname}.tmpfiles")
+sha256sums=('a28d800431d29a5eb2dc827831b0f5fdba34511823c6bea182de1d2989a8bd7b'
+            '6dde38c9d81628e44ad6af82db054405fa1ee7141bab006915b6d42a83c98e99'
+            'bcd23804763f4d13526fa2c370f2aee1f11d734bd6c4d165877cf3b824fbf3c3')
 
 _bzrtrunk='http://code.bitlbee.org/bitlbee/'
 _bzrmod=bitlbee
@@ -52,8 +54,8 @@ build()
 
 	./configure --prefix=/usr \
 	            --etcdir=/etc/bitlbee \
-	            --pidfile=/var/run/bitlbee/bitlbee.pid \
-	            --ipcsocket=/var/run/bitlbee/bitlbee.sock \
+	            --pidfile=/run/bitlbee/bitlbee.pid \
+	            --ipcsocket=/run/bitlbee/bitlbee.sock \
 	            --systemdsystemunitdir=/usr/lib/systemd/system \
 	            --ssl=openssl \
 	            --otr=plugin \
@@ -72,6 +74,8 @@ package()
 	                "${pkgdir}/etc/rc.d/bitlbee"
 	install -Dm 644 "${srcdir}/${_pkgname}.xinetd" \
 	                "${pkgdir}/etc/xinetd.d/bitlbee"
+	install -Dm 644 "${srcdir}/${_pkgname}.tmpfiles" \
+	                "${pkgdir}/usr/lib/tmpfiles.d/bitlbee.conf"
 
 	make DESTDIR="$pkgdir" install install-etc install-dev
 }
