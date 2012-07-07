@@ -12,9 +12,7 @@ post_install()
 		        -s /bin/false -c minbif minbif
 	fi
 
-	chown -R minbif:minbif /var/lib/minbif
-	chmod 770 /var/lib/minbif
-	chmod 770 /var/lib/minbif/users
+	systemd-tmpfiles --create minbif.conf
 }
 
 post_upgrade()

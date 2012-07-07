@@ -2,7 +2,7 @@
 
 pkgname=minbif-git
 _pkgname=minbif
-pkgver=20120219
+pkgver=20120706
 pkgrel=1
 pkgdesc='An IRC to IM gateway (like BitlBee) that uses libpurple (from Pidgin)'
 arch=('i686' 'x86_64')
@@ -19,9 +19,11 @@ backup=('etc/minbif/minbif.conf'
 install="${_pkgname}.install"
 changelog="${_pkgname}.changelog"
 source=("${_pkgname}.rcd"
-        "${_pkgname}.xinetd")
-sha256sums=('0827c4ba2772fe67efb7b3462b662aef690614c90eb2a2dc7d0080d3ae95311d'
-            '77d49f2685c090c1518e3ea871a1637add445c677cb3c21b92686d23f5e4f5d6')
+        "${_pkgname}.xinetd"
+        "${_pkgname}.tmpfiles")
+sha256sums=('cc841891b7013dec206b76bb3e7a70d90fa2b8e26b942b378d1918895fd95f1e'
+            '77d49f2685c090c1518e3ea871a1637add445c677cb3c21b92686d23f5e4f5d6'
+            'cef27c7e775c669cd0e9286a575623bd17a3afbbfc4f69cade6126b6eb9aa209')
 
 _gitroot='git://git.symlink.me/pub/romain/minbif.git'
 _gitname=minbif
@@ -71,6 +73,8 @@ package()
 	                "${pkgdir}/etc/rc.d/minbif"
 	install -Dm 644 "${srcdir}/${_pkgname}.xinetd" \
 	                "${pkgdir}/etc/xinetd.d/minbif"
+	install -Dm 644 "${srcdir}/${_pkgname}.tmpfiles" \
+	                "${pkgdir}/usr/lib/tmpfiles.d/minbif.conf"
 
 	make DESTDIR="$pkgdir" install
 }
