@@ -2,7 +2,7 @@
 
 pkgname=minbif
 pkgver=1.0.5
-pkgrel=2
+pkgrel=3
 pkgdesc='An IRC to IM gateway (like BitlBee) that uses libpurple (from Pidgin)'
 arch=('i686' 'x86_64')
 url='http://minbif.im/'
@@ -16,10 +16,12 @@ backup=('etc/minbif/minbif.conf'
 install="${pkgname}.install"
 changelog="${pkgname}.changelog"
 source=("http://minbif.im/attachments/download/148/${pkgname}-${pkgver}.tar.gz"
+        "${pkgname}.patch"
         "${pkgname}.rcd"
         "${pkgname}.xinetd"
         "${pkgname}.tmpfiles")
 sha256sums=('88271af203a89556165a9ebb4e00e55ea5b649146aea855dd799a79bd9e4befd'
+            'd0ae998696e142d9d020b986566c90befb54c15f2cd56133814ab705f12dbc39'
             'cc841891b7013dec206b76bb3e7a70d90fa2b8e26b942b378d1918895fd95f1e'
             '77d49f2685c090c1518e3ea871a1637add445c677cb3c21b92686d23f5e4f5d6'
             'cef27c7e775c669cd0e9286a575623bd17a3afbbfc4f69cade6126b6eb9aa209')
@@ -28,7 +30,9 @@ build()
 {
 	cd "${srcdir}/${pkgname}-${pkgver}"
 
-	# compile with default options + ENABLE_{VIDEO,PAM,TLS}=ON
+	patch -Np1 -i "${srcdir}/${pkgname}.patch"
+
+	# compile with default options + ENABLE_VIDEO=ON
 	make PREFIX=/usr \
 	     CONF_PREFIX=/etc/minbif \
 	     ENABLE_MINBIF=ON \
