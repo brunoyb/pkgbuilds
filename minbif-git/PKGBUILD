@@ -2,7 +2,7 @@
 
 pkgname=minbif-git
 _pkgname=minbif
-pkgver=20120706
+pkgver=20120707
 pkgrel=1
 pkgdesc='An IRC to IM gateway (like BitlBee) that uses libpurple (from Pidgin)'
 arch=('i686' 'x86_64')
@@ -49,7 +49,13 @@ build()
 	git clone "${srcdir}/${_gitname}" "${srcdir}/${_gitname}-build"
 	cd "${srcdir}/${_gitname}-build"
 
-	# compile with default options + ENABLE_{VIDEO,PAM,TLS}=ON
+	sed -e 's/farsight2-0.10/farstream-0.1/' \
+	    -e 's/farsight/farstream/' \
+	    -e 's/FARSIGHT/FARSTREAM/' -i CMakeLists.txt
+
+	sed -e 's/FARSIGHT/FARSTREAM/' -i src/CMakeLists.txt
+
+	# compile with default options + ENABLE_VIDEO=ON
 	make PREFIX=/usr \
 	     CONF_PREFIX=/etc/minbif \
 	     ENABLE_MINBIF=ON \
