@@ -2,7 +2,7 @@
 
 pkgname=mpdscribble
 pkgver=0.22
-pkgrel=3
+pkgrel=4
 pkgdesc='An mpd client which submits track info to last.fm'
 arch=('i686' 'x86_64')
 url='http://mpd.wikia.com/wiki/Client:Mpdscribble'
@@ -11,9 +11,11 @@ depends=('curl' 'glib2' 'libmpdclient')
 install="${pkgname}.install"
 changelog="${pkgname}.changelog"
 source=("http://downloads.sourceforge.net/musicpd/${pkgname}-${pkgver}.tar.bz2"
-        "${pkgname}.rcd")
+        "${pkgname}.rcd"
+        "${pkgname}.service")
 sha256sums=('1cde2b5f8c70f0e3e6f059d01bf0b0f2eac2b29fbcd14b01a8a5103e603feb41'
-            'becc35703cfc0b962dadffd6ceeeadfd547650f99798e813385fb5261358c3ef')
+            '04e872191e78e198dca306a14ba31f303a28ea9bc150e7c5ecadc870556d81be'
+            '0ef108567cf9c47dd382e9655237d0d05cb7c2b57e530187e9e513810842f334')
 
 build()
 {
@@ -33,7 +35,11 @@ package()
 
 	install -d "${_cachedir}" "${_docdir}"
 	install -m 644 doc/mpdscribble.conf "${_docdir}"
-	install -D "${srcdir}/${pkgname}.rcd" "${pkgdir}/etc/rc.d/mpdscribble"
+
+	install -Dm 755 "${srcdir}/${pkgname}.rcd" \
+	                "${pkgdir}/etc/rc.d/mpdscribble"
+	install -Dm 644 "${srcdir}/${pkgname}.service" \
+	                "${pkgdir}/usr/lib/systemd/system/mpdscribble.service"
 
 	make DESTDIR="$pkgdir" install
 }

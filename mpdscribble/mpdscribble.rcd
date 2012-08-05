@@ -15,7 +15,7 @@ start)
 	then
 		stat_die
 	else
-		pidof -o %PPID /usr/bin/mpdscribble > /var/run/mpdscribble.pid
+		pidof -o %PPID /usr/bin/mpdscribble > /run/mpdscribble.pid
 		add_daemon mpdscribble
 		stat_done
 	fi
@@ -30,7 +30,7 @@ stop)
 	then
 		stat_die
 	else
-		rm -f /var/run/mpdscribble.pid
+		rm -f /run/mpdscribble.pid
 		rm_daemon mpdscribble
 		stat_done
 	fi
