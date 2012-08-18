@@ -1,13 +1,11 @@
 #!/bin/bash
 
-FILTERSDIR=/usr/lib/bsnes/filters
 SHADERSDIR=/usr/share/bsnes/shaders
 PROFILEDIR=/usr/share/bsnes/profile
 CHEATSFILE=/usr/share/bsnes/cheats.xml
 
 [ ! -e ~/.config/bsnes ] && mkdir -p ~/.config/bsnes
 
-[ ! -e ~/.config/bsnes/filters ] && cp -r $FILTERSDIR ~/.config/bsnes
 [ ! -e ~/.config/bsnes/shaders ] && cp -r $SHADERSDIR ~/.config/bsnes
 [ ! -e ~/.config/bsnes/cheats.xml ] && cp $CHEATSFILE ~/.config/bsnes
 

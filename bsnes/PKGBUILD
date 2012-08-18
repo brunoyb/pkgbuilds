@@ -1,7 +1,7 @@
 # Maintainer: AkiraYB <brunoyb!yahoo,com,br>
 
 pkgname=bsnes
-pkgver=088
+pkgver=091
 pkgrel=1
 pkgdesc='SNES emulator focused on accuracy (compatibility profile)'
 arch=('i686' 'x86_64')
@@ -12,8 +12,8 @@ makedepends=('mesa')
 changelog="${pkgname}.changelog"
 source=("http://bsnes.googlecode.com/files/${pkgname}_v${pkgver}-source.tar.xz"
         "${pkgname}.sh")
-sha256sums=('edf6decf96c6b83c58f6b167951bb84b57c0ca4f3e5e8cad7af6d3485540273b'
-            'c42efe50dc234ae46a9cbd36711cb9d42d7a5b9c03747a7361b582a327412b5b')
+sha256sums=('8c85a18ff44195d23b54cad53549152f034ee338e590907e8c8cbc3eaa7daf9f'
+            'f777f6e4e3dfe0102ed57145ffa93bd269c0150890afd67684f9947144a21e6e')
 
 _profile=('accuracy' 'compatibility' 'performance')
 
@@ -22,14 +22,13 @@ build()
 	cd "${srcdir}/${pkgname}_v${pkgver}-source"
 
 	sed -e 's|cp \(.*\) /usr/local|install -D \1 $(DESTDIR)/usr|' \
-	    -e 's|\(`pkg-config --libs gtk+-2.0`\)|-lX11 \1|' \
+	    -e 's|link := -s|link := -s -lX11|' \
 	    -e 's|sudo ||' -i purify/Makefile
 
 	sed -e 's|sudo ||' \
 	    -e 's|/bin|/lib/bsnes|' \
-	    -e '/~\/.config/ d' -i bsnes/target-ui/Makefile
+	    -e '/~\/.config/ d' -i bsnes/target-ethos/Makefile
 
-	make compiler=gcc -C snesfilter
 	make compiler=gcc -C purify
 	make compiler=gcc profile="${_profile[1]}" -C bsnes
 }
@@ -42,13 +41,8 @@ package()
 	local _libdir="${pkgdir}/usr/lib"
 	local _sharedir="${pkgdir}/usr/share"
 
-	local _filtersdir="${_libdir}/bsnes/filters"
-	local _shadersdir="${_sharedir}/bsnes/shaders"
-
-	install -d "$_filtersdir" "$_shadersdir"
-
-	install -m 644 snesfilter/out/*.filter "$_filtersdir"
-	install -m 644 snesshader/*.shader "$_shadersdir"
+	install -d "${_sharedir}/bsnes/shaders"
+	install -m 644 shaders/*.shader "${_sharedir}/bsnes/shaders"
 
 	for _dir in bsnes/profile/*
 	do
