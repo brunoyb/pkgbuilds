@@ -2,7 +2,7 @@
 
 pkgname=mpdscribble
 pkgver=0.22
-pkgrel=4
+pkgrel=5
 pkgdesc='An mpd client which submits track info to last.fm'
 arch=('i686' 'x86_64')
 url='http://mpd.wikia.com/wiki/Client:Mpdscribble'
