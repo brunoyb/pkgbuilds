@@ -1,0 +1,40 @@
+# Maintainer: AkiraYB <brunoyb!outlook,com>
+
+pkgname=ec2-api-tools
+pkgver=1.6.3.0
+pkgrel=1
+pkgdesc='A set of tools that interfaces with the Amazon EC2 web service'
+arch=('any')
+url='http://aws.amazon.com/developertools/351'
+license=('custom')
+depends=('bash' 'java-runtime-headless')
+changelog="${pkgname}.changelog"
+source=("http://ec2-downloads.s3.amazonaws.com/${pkgname}-${pkgver}.zip")
+sha256sums=('ad44dcf522ecb531f28be8d3642a594426b5397a9276ae81e1a616c19ed15ee2')
+
+build()
+{
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
+	rm bin/*.cmd
+
+	sed -e 's|:?EC2_HOME is not set|:=/usr|' -i bin/*
+
+	sed -e 's|LIBDIR=.*|LIBDIR="${EC2_HOME}/lib/ec2-api-tools"|' \
+	    -e 's|:-EC2_HOME is not set|:=/usr|' -i bin/ec2-cmd
+}
+
+package()
+{
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
+	local _bindir="${pkgdir}/usr/bin"
+	local _libdir="${pkgdir}/usr/lib/ec2-api-tools"
+	local _licensesdir="${pkgdir}/usr/share/licenses/${pkgname}"
+
+	install -d "$_bindir" "$_libdir" "$_licensesdir"
+
+	install -m 755 bin/* "$_bindir"
+	install -m 644 lib/* "$_libdir"
+	install -m 644 *.{txt,TXT} "$_licensesdir"
+}
