@@ -18,6 +18,9 @@ PACKAGES
 
 Here's a little description of how I ended up making each of these packages.
 
+Some of the descriptions here isn't accurate anymore because things have
+changed since then.
+
 bitlbee
 -------
 
@@ -59,6 +62,11 @@ crosstool-ng
 Updated and revised version of crosstool-ng from AUR. Mostly because the AUR
 one is out-of-date.
 
+ec2-api-tools
+-------------
+
+Just tried to make some "improvements" over the AUR one.
+
 emacs-pov-mode
 --------------
 
@@ -77,8 +85,12 @@ package. :)
 hunspell-pt-br, hyphen-pt-br and mythes-pt-br
 ---------------------------------------------
 
-There wasn't a mythes-pt-br package in AUR so I made one! And to keep things
-standard, I ended up creating packages for hunspell-pt-br and hyphe-pt-br too.
+There wasn't a mythes-pt-br package in AUR so I made one!
+
+https://aur.archlinux.org/packages.php?ID=50917
+
+And to keep things standard, I ended up creating packages for hunspell-pt-br
+and hyphen-pt-br too.
 
 mathematica
 -----------
@@ -92,6 +104,12 @@ creating a LICENSE file with the link to the actual license (perhaps we can
 make a text version of it later) and "fixing" a installation failure that
 occurs near the end of the installation, although it doesn't seems to affect
 anything. Also, cosmetic changes as usual. :)
+
+mednafen-wip and mednafen-server
+--------------------------------
+
+Sometimes these PKGBUILD's stay out-of-date in the AUR, so I update then here
+when I need.
 
 minbif
 ------
@@ -122,7 +140,10 @@ support is as good as in minbif.
 minbif-git
 ----------
 
-The Git version of the minbif package.
+The Git version of the minbif package. I'm now the maintainer of this package
+in the AUR, here's the link:
+
+https://aur.archlinux.org/packages.php?ID=31385
 
 mpdscribble
 -----------
@@ -153,7 +174,10 @@ in nethack. Usually I play this game through telnet on nethack.alt.org (NAO),
 but sometimes it can be a little "laggy". This is when a local nethack can come
 in handy. So I decided to make this with the very same patches applied in the
 NAO public server. Besides, I tried to make the package like the official one
-in the community repository with, hopefully, some improvements.
+in the community repository with, hopefully, some improvements. I finally
+posted this one in the AUR:
+
+https://aur.archlinux.org/packages.php?ID=58374
 
 rxvt-unicode
 ------------
@@ -167,10 +191,10 @@ I was a bit annoyed with the fact that Xft fonts was rendered differently
 between xterm and urxvt. So I began to investigate. They say that a picture is
 worth a thousand words. So, let's see.
 
-xterm: http://imgur.com/z8QCU?full
-rxvt-unicode-extra (from extra): http://imgur.com/7ZCtL?full
-rxvt-unicode-patched (from AUR): http://imgur.com/TCXHq?full
-rxvt-unicode-this (this one): http://imgur.com/9SXCZ?full
+xterm: http://i.imgur.com/z8QCU.png
+rxvt-unicode-extra (from extra): http://i.imgur.com/7ZCtL.png
+rxvt-unicode-patched (from AUR): http://i.imgur.com/TCXHq.png
+rxvt-unicode-this (this one): http://i.imgur.com/9SXCZ.png
 
 As you can see, the final result is that the behaviour is identical to the one
 presented by xterm. I think it's a question of preference... But I prefer the
@@ -189,7 +213,7 @@ http://pastebin.com/ykZW4TED
 FINALLY
 =======
 
-I hope some of these packages can be useful to someone! And I'm not so
-confident with my English skills so, sorry if it was a bit confusing. :(
+I hope some of these packages can be useful to someone! And thanks for
+understanding that my English isn't that polished. :)
 
 Enjoy!
