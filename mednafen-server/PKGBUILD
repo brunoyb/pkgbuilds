@@ -1,0 +1,31 @@
+# Maintainer: AkiraYB <brunoyb!outlook,com>
+
+pkgname=mednafen-server
+pkgver=0.5.0
+pkgrel=1
+pkgdesc='A network play server for mednafen'
+arch=('i686' 'x86_64')
+url='http://mednafen.sourceforge.net/'
+license=('GPL2')
+changelog="${pkgname}.changelog"
+source=("http://downloads.sourceforge.net/mednafen/${pkgname}-${pkgver}.tar.gz")
+sha256sums=('0cb8dc6153d37df86584a0d43b2420703ccb4c6a027191a16c5506a797dacd03')
+
+build()
+{
+	cd "${srcdir}/${pkgname}"
+
+	./configure --prefix=/usr --sysconfdir=/etc
+
+	make
+}
+
+package()
+{
+	cd "${srcdir}/${pkgname}"
+
+	local _sharedir="${pkgdir}/usr/share/mednafen-server"
+	install -Dm 644 standard.conf "${_sharedir}/standard.conf"
+
+	make DESTDIR="$pkgdir" install
+}
