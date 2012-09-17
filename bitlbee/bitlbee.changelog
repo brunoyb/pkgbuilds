@@ -1,51 +1,51 @@
-2012-07-06 AkiraYB <brunoyb!yahoo,com,br>
+2012-07-06 AkiraYB <brunoyb!outlook,com>
 
 	* 3.0.5-4 :
 	Move /var/run to /run
 	Add systemd tmpfiles.d fragment
 
-2012-04-10 AkiraYB <brunoyb!yahoo,com,br>
+2012-04-10 AkiraYB <brunoyb!outlook,com>
 
 	* 3.0.5-3 :
 	Move /lib to /usr/lib
 
-2012-02-20 AkiraYB <brunoyb!yahoo,com,br>
+2012-02-20 AkiraYB <brunoyb!outlook,com>
 
 	* 3.0.5-2 :
 	Fix FS#28534
 	Fix gnutls incompatibility
 
-2012-02-19 AkiraYB <brunoyb!yahoo,com,br>
+2012-02-19 AkiraYB <brunoyb!outlook,com>
 
 	* 3.0.5-1 :
 	New upstream release v3.0.5
 
-2011-12-08 AkiraYB <brunoyb!yahoo,com,br>
+2011-12-08 AkiraYB <brunoyb!outlook,com>
 
 	* 3.0.4-3 :
 	Fix optdepends (skype4py)
 
-2011-12-06 AkiraYB <brunoyb!yahoo,com,br>
+2011-12-06 AkiraYB <brunoyb!outlook,com>
 
 	* 3.0.4-2 :
 	Build otr and skype as plugins
 
-2011-12-05 AkiraYB <brunoyb!yahoo,com,br>
+2011-12-05 AkiraYB <brunoyb!outlook,com>
 
 	* 3.0.4-1 :
 	New upstream release v3.0.4
 
-2011-09-18 AkiraYB <brunoyb!yahoo,com,br>
+2011-09-18 AkiraYB <brunoyb!outlook,com>
 
 	* 3.0.3-4 :
 	Bump pkgrel
 
-2011-08-23 AkiraYB <brunoyb!yahoo,com,br>
+2011-08-23 AkiraYB <brunoyb!outlook,com>
 
 	* 3.0.3-3 :
 	Bump pkgrel
 
-2011-08-13 AkiraYB <brunoyb!yahoo,com,br>
+2011-08-13 AkiraYB <brunoyb!outlook,com>
 
 	* 3.0.3-2 :
 	Change license to GPL2

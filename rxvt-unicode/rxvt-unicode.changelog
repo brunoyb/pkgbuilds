@@ -1,30 +1,30 @@
-2012-05-29 AkiraYB <brunoyb!yahoo,com,br>
+2012-05-29 AkiraYB <brunoyb!outlook,com>
 
 	* 9.15-3 :
 	Enable full unicode support
 
-2012-04-10 AkiraYB <brunoyb!yahoo,com,br>
+2012-04-10 AkiraYB <brunoyb!outlook,com>
 
 	* 9.15-2 :
 	Break desktop file per application
 
-2012-02-19 AkiraYB <brunoyb!yahoo,com,br>
+2012-02-19 AkiraYB <brunoyb!outlook,com>
 
 	* 9.15-1 :
 	New upstream release v9.15
 	Enable startup-notification
 
-2011-12-26 AkiraYB <brunoyb!yahoo,com,br>
+2011-12-26 AkiraYB <brunoyb!outlook,com>
 
 	* 9.14-1 :
 	New upstream release v9.14
 
-2011-12-05 AkiraYB <brunoyb!yahoo,com,br>
+2011-12-05 AkiraYB <brunoyb!outlook,com>
 
 	* 9.12-2 :
 	Bump pkgrel
 
-2011-08-21 AkiraYB <brunoyb!yahoo,com,br>
+2011-08-21 AkiraYB <brunoyb!outlook,com>
 
 	* 9.12-1 :
 	Add -N option to patch cmd
