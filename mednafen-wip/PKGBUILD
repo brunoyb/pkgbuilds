@@ -1,0 +1,34 @@
+# Maintainer: AkiraYB <brunoyb!outlook,com>
+
+pkgname=mednafen-wip
+_pkgname=mednafen
+pkgver=0.9.24
+pkgrel=1
+pkgdesc='A command-line multi-system gaming emulator (WIP version)'
+arch=('i686' 'x86_64')
+url='http://mednafen.sourceforge.net/'
+license=('GPL2')
+depends=('jack' 'libcdio' 'sdl' 'zlib')
+makedepends=('mesa')
+provides=("${_pkgname}")
+conflicts=("${_pkgname}")
+changelog="${_pkgname}.changelog"
+source=("http://downloads.sourceforge.net/mednafen/${_pkgname}-${pkgver}-wip.tar.bz2")
+#source=("${_pkgname}-${pkgver}-wip.tar.bz2::http://forum.fobby.net/index.php?t=getfile&id=380")
+sha256sums=('965b5c95253c93843656df8012ba523b92ad69aa47995ef22694f604682ce043')
+
+build()
+{
+	cd "${srcdir}/${_pkgname}"
+
+	./configure --prefix=/usr --sysconfdir=/etc
+
+	make
+}
+
+package()
+{
+	cd "${srcdir}/${_pkgname}"
+
+	make DESTDIR="$pkgdir" install
+}
