@@ -1,0 +1,40 @@
+# Maintainer: AkiraYB <brunoyb!outlook,com>
+
+pkgname=phantomjs
+pkgver=1.7.0
+pkgrel=1
+pkgdesc='A headless WebKit with JavaScript API'
+arch=('i686' 'x86_64')
+url='http://www.phantomjs.org/'
+license=('BSD')
+makedepends=('unzip' 'upx')
+options=('!strip' '!upx')
+changelog="${pkgname}.changelog"
+source=("http://phantomjs.googlecode.com/files/${pkgname}-${pkgver}-source.zip")
+noextract=("${pkgname}-${pkgver}-source.zip")
+sha256sums=('10d595aa8e637c29b491563f8af4333b30266e0cba36277000a560a7f6e53bff')
+
+build()
+{
+	unzip "${srcdir}/${pkgname}-${pkgver}-source.zip" -d "${srcdir}"
+	cd "${srcdir}/${pkgname}-${pkgver}"
+	./build.sh
+	deploy/package.sh
+}
+
+package()
+{
+	cd "${srcdir}/${pkgname}-${pkgver}/deploy/${pkgname}-${pkgver}-linux-$(uname -m)"
+
+	local _bindir="${pkgdir}/usr/bin"
+	local _docdir="${pkgdir}/usr/share/doc/${pkgname}"
+	local _licensesdir="${pkgdir}/usr/share/licenses/${pkgname}"
+
+	install -d "$_bindir" "$_docdir"{,/examples} "$_licensesdir"
+
+	install -m 755 bin/phantomjs "${_bindir}"
+	install -m 644 ChangeLog README.md "${_docdir}"
+	install -m 644 examples/* "${_docdir}/examples"
+	install -m 644 LICENSE.BSD "${_licensesdir}/LICENSE"
+	install -m 644 third-party.txt "${_licensesdir}"
+}

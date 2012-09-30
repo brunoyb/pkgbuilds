@@ -166,6 +166,16 @@ system-wide. Instead, what I do is to preserve the /etc/mpdscribble.conf file
 /usr/share/doc/mpdscribble/mpdscribble.conf, so users can have a reference for
 per-user use.
 
+phantomjs
+---------
+
+It has some improvements over the AUR one.
+
+phantomjs-bin
+---------
+
+I will try to build one, someday.
+
 nethack-nao
 -----------
 
