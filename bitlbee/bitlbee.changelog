@@ -1,3 +1,9 @@
+2012-10-22 AkiraYB <brunoyb!outlook,com>
+
+	* 3.0.6-1 :
+	New upstream release v3.0.6
+	Revert back from openssl to gnutls
+
 2012-07-06 AkiraYB <brunoyb!outlook,com>
 
 	* 3.0.5-4 :
