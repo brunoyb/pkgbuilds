@@ -2,13 +2,13 @@
 
 pkgname=bitlbee-bzr
 _pkgname=bitlbee
-pkgver=912
+pkgver=938
 pkgrel=1
 pkgdesc='Brings instant messaging (XMPP, MSN, Yahoo!, AIM, ICQ, Twitter) to IRC'
 arch=('i686' 'x86_64')
 url='http://www.bitlbee.org/'
 license=('GPL2')
-depends=('glib2' 'openssl')
+depends=('glib2' 'gnutls')
 makedepends=('asciidoc' 'libotr'
              'bzr' 'docbook-xsl' 'links' 'xmlto') # xmlto needs lynx|w3m|links
 optdepends=('libotr: for OTR encryption support'
@@ -57,7 +57,7 @@ build()
 	            --pidfile=/run/bitlbee/bitlbee.pid \
 	            --ipcsocket=/run/bitlbee/bitlbee.sock \
 	            --systemdsystemunitdir=/usr/lib/systemd/system \
-	            --ssl=openssl \
+	            --ssl=gnutls \
 	            --otr=plugin \
 	            --skype=plugin
 

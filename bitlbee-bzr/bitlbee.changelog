@@ -1,3 +1,8 @@
+2012-10-22 AkiraYB <brunoyb!outlook,com>
+
+	* 938-1 :
+	Revert back from openssl to gnutls
+
 2012-07-06 AkiraYB <brunoyb!outlook,com>
 
 	* 912-1 :
