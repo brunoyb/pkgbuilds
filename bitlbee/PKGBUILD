@@ -2,14 +2,14 @@
 
 pkgname=bitlbee
 pkgver=3.0.6
-pkgrel=1
+pkgrel=2
 pkgdesc='Brings instant messaging (XMPP, MSN, Yahoo!, AIM, ICQ, Twitter) to IRC'
 arch=('i686' 'x86_64')
 url='http://www.bitlbee.org/'
 license=('GPL2')
 depends=('glib2' 'gnutls')
-makedepends=('asciidoc' 'libotr')
-optdepends=('libotr: for OTR encryption support'
+makedepends=('asciidoc' 'libotr3')
+optdepends=('libotr3: for OTR encryption support'
             'skype4py: to use skyped'
             'xinetd: to run bitlbee through xinetd')
 backup=('etc/bitlbee/bitlbee.conf'
@@ -38,6 +38,10 @@ build()
 	            --ssl=gnutls \
 	            --otr=plugin \
 	            --skype=plugin
+
+	# build against libotr3
+	sed 's/#include.*libotr/&3/' -i otr.h
+	sed 's/^OTRFLAGS=.*/OTRFLAGS=-lotr3/' -i Makefile.settings
 
 	make
 }
