@@ -2,16 +2,16 @@
 
 pkgname=bitlbee-bzr
 _pkgname=bitlbee
-pkgver=938
+pkgver=943
 pkgrel=1
 pkgdesc='Brings instant messaging (XMPP, MSN, Yahoo!, AIM, ICQ, Twitter) to IRC'
 arch=('i686' 'x86_64')
 url='http://www.bitlbee.org/'
 license=('GPL2')
 depends=('glib2' 'gnutls')
-makedepends=('asciidoc' 'libotr'
+makedepends=('asciidoc' 'libotr3'
              'bzr' 'docbook-xsl' 'links' 'xmlto') # xmlto needs lynx|w3m|links
-optdepends=('libotr: for OTR encryption support'
+optdepends=('libotr3: for OTR encryption support'
             'skype4py: to use skyped'
             'xinetd: to run bitlbee through xinetd')
 provides=("${_pkgname}")
@@ -60,6 +60,10 @@ build()
 	            --ssl=gnutls \
 	            --otr=plugin \
 	            --skype=plugin
+
+	# build against libotr3
+	sed 's/#include.*libotr/&3/' -i otr.h
+	sed 's/^OTRFLAGS=.*/OTRFLAGS=-lotr3/' -i Makefile.settings
 
 	make
 }
