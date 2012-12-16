@@ -1,7 +1,7 @@
 # Maintainer: AkiraYB <brunoyb!outlook,com>
 
 pkgname=ec2-api-tools
-pkgver=1.6.3.0
+pkgver=1.6.5.4
 pkgrel=1
 pkgdesc='A set of tools that interfaces with the Amazon EC2 web service'
 arch=('any')
@@ -10,7 +10,7 @@ license=('custom')
 depends=('bash' 'java-runtime-headless')
 changelog="${pkgname}.changelog"
 source=("http://ec2-downloads.s3.amazonaws.com/${pkgname}-${pkgver}.zip")
-sha256sums=('ad44dcf522ecb531f28be8d3642a594426b5397a9276ae81e1a616c19ed15ee2')
+sha256sums=('d381e62a74f986e8b7e46113b7644b855d1734ddfc5e81afc47af03a5b40087c')
 
 build()
 {
