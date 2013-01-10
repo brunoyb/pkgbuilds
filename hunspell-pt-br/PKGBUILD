@@ -1,7 +1,7 @@
 # Maintainer: AkiraYB <brunoyb!outlook,com>
 
 pkgname=hunspell-pt-br
-pkgver=2.1.1
+pkgver=3.0
 pkgrel=1
 pkgdesc='Portuguese (Brazil) hunspell dictionary'
 arch=('any')
@@ -9,8 +9,8 @@ url='http://www.broffice.org/verortografico/'
 license=('LGPL3')
 optdepends=('hunspell: the spell checking libraries and apps')
 changelog="${pkgname}.changelog"
-source=('http://www.broffice.org/files/Vero_pt_BR_V211AOC.oxt')
-sha256sums=('51e2f133dc6bb90bac39bf4f4c83bbedc16c16ddaec3215c7e269155c1a15f90')
+source=('http://www.broffice.org/files/Vero_pt_BR_V300AOC-beta24.oxt')
+sha256sums=('38c88943bf7231d24a245a8e11a457ca7c1c8a7aff9c9bcd20c2c086740baa98')
 
 package()
 {
@@ -29,5 +29,5 @@ package()
 		ln -sv "${_file#${pkgdir}}" "${_dictsdir}"
 	done
 
-	install -m 644 README_pt_BR.TXT "$_docdir"
+	install -m 644 README_pt_BR.txt "$_docdir"
 }
