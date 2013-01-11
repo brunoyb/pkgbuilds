@@ -2,7 +2,7 @@
 
 pkgname=bitlbee-bzr
 _pkgname=bitlbee
-pkgver=943
+pkgver=965
 pkgrel=1
 pkgdesc='Brings instant messaging (XMPP, MSN, Yahoo!, AIM, ICQ, Twitter) to IRC'
 arch=('i686' 'x86_64')
