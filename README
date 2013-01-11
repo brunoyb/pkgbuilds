@@ -176,37 +176,6 @@ posted this one in the AUR:
 
 https://aur.archlinux.org/packages.php?ID=58374
 
-rxvt-unicode
-------------
-
-This is a mixed version of the package from the extra repo and the
-rxvt-unicode-patched (https://aur.archlinux.org/packages.php?ID=44649) from
-AUR. It just uses the patch font-fix (a modified version of it) from the AUR
-package and not the layout-gaps one.
-
-I was a bit annoyed with the fact that Xft fonts was rendered differently
-between xterm and urxvt. So I began to investigate. They say that a picture is
-worth a thousand words. So, let's see.
-
-xterm: http://i.imgur.com/z8QCU.png
-rxvt-unicode-extra (from extra): http://i.imgur.com/7ZCtL.png
-rxvt-unicode-patched (from AUR): http://i.imgur.com/TCXHq.png
-rxvt-unicode-this (this one): http://i.imgur.com/9SXCZ.png
-
-As you can see, the final result is that the behaviour is identical to the one
-presented by xterm. I think it's a question of preference... But I prefer the
-result you got using this patch, because you can tweak the line spacing anyway
-using the "lineSpace" resource (-lsp) and increase the line space to get the
-result you want, but unlike the "letterSpace" resource (-letsp) that allows you
-to set negative values, this "lineSpace" resource don't.
-
-I don't really know if this patch is the real fix for this "issue", but it's
-working so far for me. I posted the code for a patch that can be used with the
-rxvt-unicode-patched (https://aur.archlinux.org/packages.php?ID=44649) from AUR
-in the link below, just replace the font-width-fix.patch with this one:
-
-http://pastebin.com/ykZW4TED
-
 FINALLY
 =======
 
