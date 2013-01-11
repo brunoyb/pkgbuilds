@@ -2,7 +2,7 @@
 
 pkgname=mednafen-wip
 _pkgname=mednafen
-pkgver=0.9.26
+pkgver=0.9.27
 pkgrel=1
 pkgdesc='A command-line multi-system gaming emulator (WIP version)'
 arch=('i686' 'x86_64')
@@ -13,9 +13,9 @@ makedepends=('mesa')
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 changelog="${_pkgname}.changelog"
-source=("http://downloads.sourceforge.net/mednafen/${_pkgname}-${pkgver}-wip.tar.bz2")
-#source=("${_pkgname}-${pkgver}-wip.tar.bz2::http://forum.fobby.net/index.php?t=getfile&id=422")
-sha256sums=('78351f1206e0e01f7827380903813541f18e4dc5556b67c5f9dfd81ce6e88021')
+#source=("http://downloads.sourceforge.net/mednafen/${_pkgname}-${pkgver}-wip.tar.bz2")
+source=("${_pkgname}-${pkgver}-wip.tar.bz2::http://forum.fobby.net/index.php?t=getfile&id=441")
+sha256sums=('263436fe0df758039838e000ae82bb4fc056f3932a2b5f02ce32db19250931db')
 
 build()
 {
